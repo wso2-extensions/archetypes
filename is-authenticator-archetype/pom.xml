@@ -21,12 +21,12 @@
     <parent>
         <groupId>org.wso2.carbon.extension.archetype</groupId>
         <artifactId>carbon-extension-archetype</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>org.wso2.carbon.extension.archetype</groupId>
     <artifactId>org.wso2.carbon.extension.archetype.is.authenticator-archetype</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
 
     <name>WSO2 Carbon - Authenticator Archetype for Template</name>
