@@ -22,7 +22,6 @@ package ${package};
 public class ${connector_name}AuthenticatorConstants {
     public static final String AUTHENTICATOR_NAME = "${connector_name}";
     public static final String AUTHENTICATOR_FRIENDLY_NAME = "${connector_name}Authenticator";
-
     //${connector_name} authorize endpoint URL
     public static final String ${connector_name}_OAUTH_ENDPOINT = "";
     //${connector_name} token  endpoint URL

@@ -33,7 +33,8 @@ import java.util.Map;
 /**
  * Authenticator of ${connector_name}
  */
-public class ${connector_name}Authenticator extends OpenIDConnectAuthenticator implements FederatedApplicationAuthenticator {
+public class ${connector_name}Authenticator extends OpenIDConnectAuthenticator
+        implements FederatedApplicationAuthenticator {
 
     private static Log log = LogFactory.getLog(${connector_name}Authenticator.class);
 
@@ -95,6 +96,4 @@ public class ${connector_name}Authenticator extends OpenIDConnectAuthenticator i
         //Add your configuration properties
         return configProperties;
     }
-
 }
-
