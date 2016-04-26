@@ -27,7 +27,7 @@
 
     <groupId>org.wso2.carbon.extension.archetype</groupId>
     <artifactId>carbon-extension-archetype</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
     <name>WSO2 Carbon Extension - Archetype Pom</name>
     <url>http://wso2.org</url>
@@ -50,7 +50,7 @@
         <connection>scm:git:https://github.com/wso2-extensions/archetypes.git</connection>
         <url>https://github.com/wso2-extensions/archetypes.git</url>
         <developerConnection>scm:git:https://github.com/wso2-extensions/archetypes.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>carbon-extension-archetype-1.0.1</tag>
     </scm>
 
     <build>
