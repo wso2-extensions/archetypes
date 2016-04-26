@@ -34,6 +34,9 @@ public class ${connector_name}AuthenticatorServiceComponent {
 
     private static Log log = LogFactory.getLog(${connector_name}AuthenticatorServiceComponent.class);
 
+/**
+ *
+ */
     protected void activate(ComponentContext ctxt) {
         try {
             ${connector_name}Authenticator authenticator = new ${connector_name}Authenticator();
@@ -47,7 +50,9 @@ public class ${connector_name}AuthenticatorServiceComponent {
             log.fatal("Error while activating the ${connector_name} authenticator ", e);
         }
     }
-
+/**
+ *
+ */
     protected void deactivate(ComponentContext ctxt) {
         if (log.isDebugEnabled()) {
             log.debug("${connector_name} authenticator is deactivated");
