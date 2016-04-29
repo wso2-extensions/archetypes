@@ -20,15 +20,15 @@
 */
 package ${package};
 
-import org.wso2.carbon.mediation.library.connectors.core.AbstractConnector;
-import org.wso2.carbon.mediation.library.connectors.core.ConnectException;
-import org.wso2.carbon.mediation.library.connectors.core.util.ConnectorUtils;
+import org.apache.synapse.MessageContext;
+import org.wso2.carbon.connector.core.AbstractConnector;
+import org.wso2.carbon.connector.core.ConnectException;
 
 public class ${connector_name} extends AbstractConnector {
 
     @Override
-    public void connect() throws ConnectException {
-        String templateParam = getParameter("generated_param");
+    public void connect(MessageContext messageContext) throws ConnectException {
+        Object templateParam = getParameter(messageContext, "generated_param");
         
         try {
             System.out.println("Hello WORLD " + "${connector_name} !!!" + " : paramter :" + templateParam); 	
