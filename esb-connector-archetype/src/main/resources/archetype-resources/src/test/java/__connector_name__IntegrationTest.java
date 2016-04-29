@@ -22,7 +22,7 @@ package ${package};
 
 import org.wso2.carbon.esb.ESBIntegrationTest;
 
-public class ${__connector_name__IntegrationTest} extends extends ESBIntegrationTest {
+public class ${connector_name}IntegrationTest extends extends ESBIntegrationTest {
 
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
