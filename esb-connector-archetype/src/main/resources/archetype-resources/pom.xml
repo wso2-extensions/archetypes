@@ -70,7 +70,7 @@
                             <goal>attached</goal>
                         </goals>
                         <configuration>
-                            <finalName>${connector_name.toLowerCase()}</finalName>
+                            <finalName>${connector_name.toLowerCase()}-connector-${connector-version}</finalName>
                             <appendAssemblyId>true</appendAssemblyId>
 
                             <filters>
