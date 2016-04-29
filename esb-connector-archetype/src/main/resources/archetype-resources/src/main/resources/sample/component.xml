@@ -19,7 +19,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="${connector_name.toLowerCase()}_template" type="synapse/template" >
+<component name="sample" type="synapse/template" >
     <subComponents> 
 		<component name="init" >
 	    		<file>${connector_name}-template.xml</file>
