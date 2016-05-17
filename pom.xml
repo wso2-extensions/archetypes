@@ -18,6 +18,9 @@
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>cep-siddi-function</module>
+    </modules>
 
     <parent>
         <groupId>org.wso2</groupId>
@@ -42,6 +45,13 @@
                 <module>esb-connector-archetype</module>
                 <module>is-authenticator-archetype</module>
                 <module>is-provisioning-connector-archetype</module>
+                <module>cep-siddi-function</module>
+                <module>cep-streamFunction-archetype</module>
+                <module>cep-streamProcessor-archetype</module>
+                <module>cep-window-archetype</module>
+                <module>cep-aggregator-archetype</module>
+                <module>cep-analytics_publisher-archetype</module>
+                <module>cep-analytics_receiver-archetype</module>
             </modules>
         </profile>
     </profiles>
