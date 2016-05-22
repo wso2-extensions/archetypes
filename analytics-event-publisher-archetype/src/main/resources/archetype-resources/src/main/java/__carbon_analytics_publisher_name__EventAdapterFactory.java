@@ -27,7 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The ${carbon_analytics_publisher_name} event adapter factory class to create an ${carbon_analytics_publisher_name} input adapter
+ * The ${carbon_analytics_publisher_name} event adapter factory class to create
+ * an ${carbon_analytics_publisher_name} output adapter
  */
 public class ${carbon_analytics_publisher_name}EventAdapterFactory extends OutputEventAdapterFactory {
 

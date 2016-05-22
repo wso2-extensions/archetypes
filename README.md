@@ -5,7 +5,7 @@ Maven archetypes for various wso2 extensions
 eg:- 
 
 Enterprise service bus Connectors
-Identity server authinticators and provisioning connectors
+Identity server authenticators and provisioning connectors
 
 Find more information on how to contribute using following links.
 

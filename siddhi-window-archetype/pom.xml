@@ -9,9 +9,8 @@
         <version>1.0.2-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.wso2.carbon.extension.archetype</groupId>
     <packaging>maven-archetype</packaging>
-    <artifactId>org.wso2.siddi.extension.archetype.window-archetype</artifactId>
+    <artifactId>org.wso2.carbon.extension.archetype.siddhi.window-archetype</artifactId>
     <version>1.0.2-SNAPSHOT</version>
     <name>WSO2 Siddhi - Window Archetype for Template</name>
     <url>http://wso2.org</url>

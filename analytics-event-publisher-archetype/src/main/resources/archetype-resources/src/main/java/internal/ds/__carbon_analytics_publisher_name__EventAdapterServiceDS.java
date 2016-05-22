@@ -22,7 +22,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.service.component.ComponentContext;
 import org.wso2.carbon.event.output.adapter.core.OutputEventAdapterFactory;
-import org.wso2.carbon.extension.analytics_publisher.${carbon_analytics_publisher_name}EventAdapterFactory;
+import ${package}.${carbon_analytics_publisher_name}EventAdapterFactory;
 
 
 /**

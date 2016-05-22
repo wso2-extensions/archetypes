@@ -20,7 +20,7 @@ package ${package}.internal.util;
 
 public final class ${carbon_analytics_publisher_name}EventAdapterConstants {
 
-    private SampleEventAdapterConstants() {
+    private ${carbon_analytics_publisher_name}EventAdapterConstants() {
     }
 
 }

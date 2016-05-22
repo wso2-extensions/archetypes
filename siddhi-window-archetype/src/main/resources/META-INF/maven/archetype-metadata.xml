@@ -40,8 +40,14 @@
                 <include>**/*.siddhiext</include>
             </includes>
         </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>src/test/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
     </fileSets>
     <requiredProperties>
-        <requiredProperty key="siddi_stream_function_name"/>
+        <requiredProperty key="siddhi_window_name"/>
     </requiredProperties>
 </archetype-descriptor>
