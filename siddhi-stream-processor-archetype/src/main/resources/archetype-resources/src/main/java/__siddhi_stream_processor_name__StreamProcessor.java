@@ -21,35 +21,53 @@ package ${package};
 import org.wso2.siddhi.core.config.ExecutionPlanContext;
 import org.wso2.siddhi.core.event.ComplexEvent;
 import org.wso2.siddhi.core.event.ComplexEventChunk;
+import org.wso2.siddhi.core.event.MetaComplexEvent;
 import org.wso2.siddhi.core.event.stream.StreamEvent;
 import org.wso2.siddhi.core.event.stream.StreamEventCloner;
 import org.wso2.siddhi.core.event.stream.populater.ComplexEventPopulater;
-import org.wso2.siddhi.core.exception.ExecutionPlanCreationException;
 import org.wso2.siddhi.core.executor.ConstantExpressionExecutor;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
+import org.wso2.siddhi.core.executor.VariableExpressionExecutor;
 import org.wso2.siddhi.core.query.processor.Processor;
+import org.wso2.siddhi.core.query.processor.SchedulingProcessor;
 import org.wso2.siddhi.core.query.processor.stream.StreamProcessor;
+import org.wso2.siddhi.core.query.processor.stream.window.FindableProcessor;
+import org.wso2.siddhi.core.table.EventTable;
+import org.wso2.siddhi.core.util.Scheduler;
+import org.wso2.siddhi.core.util.collection.operator.Finder;
+import org.wso2.siddhi.core.util.parser.CollectionOperatorParser;
 import org.wso2.siddhi.query.api.definition.AbstractDefinition;
 import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.extension.timeseries.linreg.RegressionCalculator;
-import org.wso2.siddhi.extension.timeseries.linreg.SimpleLinearRegressionCalculator;
+import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
+import org.wso2.siddhi.query.api.expression.Expression;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 
 /**
  * ${siddhi_stream_processor_name}
  */
 
-public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProcessor {
+public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProcessor implements
+        SchedulingProcessor, FindableProcessor {
 
-    private int paramCount = 0;                                         // Number of x variables +1
-    private int calcInterval = 1;                                       // The frequency of regression calculation
-    private int batchSize = 1000000000;                                 // Maximum # of events, used for regression calculation
-    private double ci = 0.95;                                           // Confidence Interval
-    private final int SIMPLE_LINREG_INPUT_PARAM_COUNT = 2;              // Number of Input parameters in a simple linear regression
-    private RegressionCalculator regressionCalculator = null;
-    private int paramPosition = 0;
+    private long timeInMilliSeconds;
+    private ComplexEventChunk<StreamEvent> expiredEventChunk;
+    private Scheduler scheduler;
+    private ExecutionPlanContext executionPlanContext;
+    private volatile long lastTimestamp = Long.MIN_VALUE;
+
+    @Override
+    public void setScheduler(Scheduler scheduler) {
+        this.scheduler = scheduler;
+    }
+
+    @Override
+    public Scheduler getScheduler() {
+        return scheduler;
+    }
 
     /**
      * The init method of the ${siddhi_stream_processor_name}StreamProcessor,
@@ -65,35 +83,30 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
                                    ExpressionExecutor[] attributeExpressionExecutors,
                                    ExecutionPlanContext executionPlanContext) {
         //Sample code begin
-        paramCount = attributeExpressionLength;
-        // Capture constant inputs
-        if (attributeExpressionExecutors[0] instanceof ConstantExpressionExecutor) {
-            paramCount = paramCount - 3;
-            paramPosition = 3;
-            try {
-                calcInterval = ((Integer) attributeExpressionExecutors[0].execute(null));
-                batchSize = ((Integer) attributeExpressionExecutors[1].execute(null));
-            } catch (ClassCastException c) {
-                throw new ExecutionPlanCreationException("Calculation interval, batch size and range should be of type int");
-            }
-            try {
-                ci = ((Double) attributeExpressionExecutors[2].execute(null));
-            } catch (ClassCastException c) {
-                throw new ExecutionPlanCreationException("Confidence interval should be of type double and a value between 0 and 1");
-            }
-        }
-        regressionCalculator = new SimpleLinearRegressionCalculator(paramCount, calcInterval, batchSize, ci);
-        // Add attributes for standard error and all beta values
-        String betaVal;
-        ArrayList<Attribute> attributes = new ArrayList<Attribute>(paramCount);
-        attributes.add(new Attribute("stderr", Attribute.Type.DOUBLE));
+        this.executionPlanContext = executionPlanContext;
+        this.expiredEventChunk = new ComplexEventChunk<StreamEvent>(false);
 
-        for (int itr = 0; itr < paramCount; itr++) {
-            betaVal = "beta" + itr;
-            attributes.add(new Attribute(betaVal, Attribute.Type.DOUBLE));
+        if (attributeExpressionExecutors.length == 1) {
+            if (attributeExpressionExecutors[0] instanceof ConstantExpressionExecutor) {
+                if (attributeExpressionExecutors[0].getReturnType() == Attribute.Type.INT) {
+                    timeInMilliSeconds = (Integer) ((ConstantExpressionExecutor) attributeExpressionExecutors[0]).getValue();
+
+                } else if (attributeExpressionExecutors[0].getReturnType() == Attribute.Type.LONG) {
+                    timeInMilliSeconds = (Long) ((ConstantExpressionExecutor) attributeExpressionExecutors[0]).getValue();
+                } else {
+                    throw new ExecutionPlanValidationException("Custom Stream Processor's 1st parameter attribute should be either int or long, but found " + attributeExpressionExecutors[0].getReturnType());
+                }
+            } else {
+                throw new ExecutionPlanValidationException("Custom Stream Processor's 1st parameter needs to be constant parameter attribute but found a dynamic attribute " + attributeExpressionExecutors[0].getClass().getCanonicalName());
+            }
+        } else {
+            throw new ExecutionPlanValidationException("Custom Stream Processor should only have one/two parameter (<int|long|time> windowTime (and <int|long> startTime), but found " + attributeExpressionExecutors.length + " input attributes");
         }
+
+        List<Attribute> attributeList = new ArrayList<Attribute>();
+        attributeList.add(new Attribute("expiryTimeStamp", Attribute.Type.LONG));
+        return attributeList;
         //Sample code end
-        return attributes;
     }
 
     /**
@@ -108,21 +121,41 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
     protected void process(ComplexEventChunk<StreamEvent> streamEventChunk, Processor nextProcessor,
                            StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater) {
         //Sample code begin
-        while (streamEventChunk.hasNext()) {
-            ComplexEvent complexEvent = streamEventChunk.next();
+        synchronized (this) {
+            while (streamEventChunk.hasNext()) {
+                StreamEvent streamEvent = streamEventChunk.next();
+                long currentTime = executionPlanContext.getTimestampGenerator().currentTime();
+                long expireEventTime = currentTime + timeInMilliSeconds;
+                complexEventPopulater.populateComplexEvent(streamEvent, new Object[]{expireEventTime});
 
-            Object[] inputData = new Object[attributeExpressionLength - paramPosition];
-            for (int i = paramPosition; i < attributeExpressionLength; i++) {
-                inputData[i - paramPosition] = attributeExpressionExecutors[i].execute(complexEvent);
-            }
-            Object[] outputData = regressionCalculator.calculateLinearRegression(inputData);
+                expiredEventChunk.reset();
+                while (expiredEventChunk.hasNext()) {
+                    StreamEvent expiredEvent = expiredEventChunk.next();
+                    long timeDiff = expiredEvent.getTimestamp() - currentTime + timeInMilliSeconds;
+                    if (timeDiff <= 0) {
+                        expiredEventChunk.remove();
+                        expiredEvent.setTimestamp(currentTime);
+                        streamEventChunk.insertBeforeCurrent(expiredEvent);
+                    } else {
+                        break;
+                    }
+                }
 
-            // Skip processing if user has specified calculation interval
-            if (outputData == null) {
-                streamEventChunk.remove();
-            } else {
-                complexEventPopulater.populateComplexEvent(complexEvent, outputData);
+                if (streamEvent.getType() == StreamEvent.Type.CURRENT) {
+
+                    StreamEvent clonedEvent = streamEventCloner.copyStreamEvent(streamEvent);
+                    clonedEvent.setType(StreamEvent.Type.EXPIRED);
+                    this.expiredEventChunk.add(clonedEvent);
+
+                    if (lastTimestamp < clonedEvent.getTimestamp()) {
+                        scheduler.notifyAt(clonedEvent.getTimestamp() + timeInMilliSeconds);
+                        lastTimestamp = clonedEvent.getTimestamp();
+                    }
+                } else {
+                    streamEventChunk.remove();
+                }
             }
+            expiredEventChunk.reset();
         }
         nextProcessor.process(streamEventChunk);
         //Sample code end
@@ -157,7 +190,7 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
      */
     @Override
     public Object[] currentState() {
-        return new Object[0];
+        return new Object[]{expiredEventChunk.getFirst()};
     }
 
     /**
@@ -170,5 +203,32 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
     @Override
     public void restoreState(Object[] state) {
         //Implement restore state logic
+        expiredEventChunk.clear();
+        expiredEventChunk.add((StreamEvent) state[0]);
+    }
+
+    @Override
+    public StreamEvent find(ComplexEvent complexEvent, Finder finder) {
+        return finder.find(complexEvent, expiredEventChunk, streamEventCloner);
+    }
+
+    @Override
+    public Finder constructFinder(Expression expression, MetaComplexEvent metaComplexEvent,
+                                  ExecutionPlanContext executionPlanContext,
+                                  List<VariableExpressionExecutor> list,
+                                  Map<String, EventTable> map, int i, long l) {
+        return CollectionOperatorParser.parse(expression, metaComplexEvent, executionPlanContext,
+                list, map, i, inputDefinition, l);
+    }
+
+    /**
+     * method to sample
+     *
+     * @param currentTime currentTime
+     * @return
+     */
+    private long addTimeShift(long currentTime) {
+        long timePassedUntilNow = currentTime % timeInMilliSeconds;
+        return currentTime + (timeInMilliSeconds - timePassedUntilNow);
     }
 }

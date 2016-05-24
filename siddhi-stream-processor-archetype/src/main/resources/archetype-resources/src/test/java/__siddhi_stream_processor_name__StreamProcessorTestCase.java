@@ -32,96 +32,61 @@ import org.wso2.siddhi.core.util.EventPrinter;
 
 public class ${siddhi_stream_processor_name}StreamProcessorTestCase {
     private static Logger logger = Logger.getLogger(${siddhi_stream_processor_name}StreamProcessorTestCase.class);
-    protected static SiddhiManager siddhiManager;
-    private int count;
-    private double betaZero;
+    private int inEventCount;
+    private int removeEventCount;
+    private boolean eventArrived;
 
     @Before
     public void init() {
-        count = 0;
+        inEventCount = 0;
+        removeEventCount = 0;
+        eventArrived = false;
+
     }
 
     @Test
-    public void simpleRegressionTest() throws Exception {
-        logger.info("Simple Regression TestCase");
+    public void customStreamProcessorTest1() throws InterruptedException {
 
-        siddhiManager = new SiddhiManager();
-        String inputStream = "define stream InputStream (y int, x int);";
+        SiddhiManager siddhiManager = new SiddhiManager();
 
-        String executionPlan = ("@info(name = 'query1') from InputStream#${siddhi_stream_processor_name}:${siddhi_stream_processor_name}(1, 100, 0.95, y, x) "
-                + "select * "
-                + "insert into OutputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inputStream + executionPlan);
+        String cseEventStream = "" +
+                "define stream cseEventStream (symbol string, price float, volume int);";
+        String query = "" +
+                "@info(name = 'query1') " +
+                "from cseEventStream#${siddhi_stream_processor_name}:${siddhi_stream_processor_name}(5 sec) " +
+                "select symbol, price, volume, expiryTimeStamp " +
+                "insert all events into outputStream ;";
+
+        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(cseEventStream + query);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
-            public void receive(long timeStamp, Event[] inEvents,
-                                Event[] removeEvents) {
+            public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
-                count = count + inEvents.length;
-                betaZero = (Double) inEvents[inEvents.length - 1].getData(3);
+                if (inEvents != null) {
+                    inEventCount = inEventCount + inEvents.length;
+                } else if (removeEvents != null) {
+                    removeEventCount = removeEventCount + removeEvents.length;
+
+                }
+                eventArrived = true;
             }
+
         });
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("InputStream");
+
+        InputHandler inputHandler = executionPlanRuntime.getInputHandler("cseEventStream");
         executionPlanRuntime.start();
-        Thread.sleep(100);
-        logger.info(System.currentTimeMillis());
-
-        inputHandler.send(new Object[]{2500.00, 17.00});
-        inputHandler.send(new Object[]{2600.00, 18.00});
-        inputHandler.send(new Object[]{3300.00, 31.00});
-        inputHandler.send(new Object[]{2475.00, 12.00});
-        inputHandler.send(new Object[]{2313.00, 8.00});
-        inputHandler.send(new Object[]{2175.00, 26.00});
-        inputHandler.send(new Object[]{600.00, 14.00});
-        inputHandler.send(new Object[]{460.00, 3.00});
-        inputHandler.send(new Object[]{240.00, 1.00});
-        inputHandler.send(new Object[]{200.00, 10.00});
-        inputHandler.send(new Object[]{177.00, 0.00});
-        inputHandler.send(new Object[]{140.00, 6.00});
-        inputHandler.send(new Object[]{117.00, 1.00});
-        inputHandler.send(new Object[]{115.00, 0.00});
-        inputHandler.send(new Object[]{2600.00, 19.00});
-        inputHandler.send(new Object[]{1907.00, 13.00});
-        inputHandler.send(new Object[]{1190.00, 3.00});
-        inputHandler.send(new Object[]{990.00, 16.00});
-        inputHandler.send(new Object[]{925.00, 6.00});
-        inputHandler.send(new Object[]{365.00, 0.00});
-        inputHandler.send(new Object[]{302.00, 10.00});
-        inputHandler.send(new Object[]{300.00, 6.00});
-        inputHandler.send(new Object[]{129.00, 2.00});
-        inputHandler.send(new Object[]{111.00, 1.00});
-        inputHandler.send(new Object[]{6100.00, 18.00});
-        inputHandler.send(new Object[]{4125.00, 19.00});
-        inputHandler.send(new Object[]{3213.00, 1.00});
-        inputHandler.send(new Object[]{2319.00, 38.00});
-        inputHandler.send(new Object[]{2000.00, 10.00});
-        inputHandler.send(new Object[]{1600.00, 0.00});
-        inputHandler.send(new Object[]{1394.00, 4.00});
-        inputHandler.send(new Object[]{935.00, 4.00});
-        inputHandler.send(new Object[]{850.00, 0.00});
-        inputHandler.send(new Object[]{775.00, 5.00});
-        inputHandler.send(new Object[]{760.00, 6.00});
-        inputHandler.send(new Object[]{629.00, 1.00});
-        inputHandler.send(new Object[]{275.00, 6.00});
-        inputHandler.send(new Object[]{120.00, 0.00});
-        inputHandler.send(new Object[]{2567.00, 12.00});
-        inputHandler.send(new Object[]{2500.00, 28.00});
-        inputHandler.send(new Object[]{2350.00, 21.00});
-        inputHandler.send(new Object[]{2317.00, 3.00});
-        inputHandler.send(new Object[]{2000.00, 12.00});
-        inputHandler.send(new Object[]{715.00, 1.00});
-        inputHandler.send(new Object[]{660.00, 9.00});
-        inputHandler.send(new Object[]{650.00, 0.00});
-        inputHandler.send(new Object[]{260.00, 0.00});
-        inputHandler.send(new Object[]{250.00, 1.00});
-        inputHandler.send(new Object[]{200.00, 13.00});
-        inputHandler.send(new Object[]{180.00, 6.00});
-        Thread.sleep(100);
-
-        Assert.assertEquals("No of events: ", 50, count);
-        Assert.assertEquals("Beta0: ", 573.1418421169493, betaZero, 573.1418421169493 - betaZero);
-
+        inputHandler.send(new Object[]{"IBM", 700f, 0});
+        Thread.sleep(500);
+        inputHandler.send(new Object[]{"WSO2", 60.5f, 1});
+        Thread.sleep(6000);
+        inputHandler.send(new Object[]{"IBM", 700f, 0});
+        Thread.sleep(500);
+        inputHandler.send(new Object[]{"WSO2", 60.5f, 1});
+        Thread.sleep(6000);
+        Assert.assertEquals(4, inEventCount);
+        Assert.assertEquals(4, removeEventCount);
+        Assert.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 }
