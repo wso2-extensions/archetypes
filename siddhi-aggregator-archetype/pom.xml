@@ -24,9 +24,8 @@
         <version>1.0.2-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.wso2.carbon.extension.archetype</groupId>
     <packaging>maven-archetype</packaging>
-    <artifactId>org.wso2.carbon.extension.archetype.siddhi.aggregator-archetype</artifactId>
+    <artifactId>org.wso2.extension.siddhi.aggregator-archetype</artifactId>
     <version>1.0.2-SNAPSHOT</version>
     <name>WSO2 Siddhi - Aggregator Archetype for Template</name>
     <url>http://wso2.org</url>

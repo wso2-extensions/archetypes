@@ -8,7 +8,7 @@ STEPS:
  2. Navigate to "<SIDDHI_AGGREGATOR_HOME>" and run the following command to create the siddhi aggregator
     mvn archetype:generate
         -DarchetypeGroupId=org.wso2.carbon.extension.archetype
-        -DarchetypeArtifactId=org.wso2.carbon.extension.archetype.siddhi.aggregator-archetype
+        -DarchetypeArtifactId=org.wso2.extension.siddhi.aggregator-archetype
         -DarchetypeVersion=1.0.2-SNAPSHOT
         -DgroupId=org.wso2.extension.siddhi
         -DartifactId=org.wso2.extension.siddhi.aggregation.<siddhi_aggregator_name>

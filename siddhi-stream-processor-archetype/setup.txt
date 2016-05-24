@@ -8,7 +8,7 @@ STEPS:
  2. Navigate to "<SIDDHI-EXTENSION-STREAM_PROCESSOR>" and run the following command to create the siddhi streamprocessor
     mvn archetype:generate
         -DarchetypeGroupId=org.wso2.carbon.extension.archetype
-        -DarchetypeArtifactId=org.wso2.carbon.extension.archetype.siddhi.streamprocessor-archetype
+        -DarchetypeArtifactId=org.wso2.extension.siddhi.streamprocessor-archetype
         -DarchetypeVersion=1.0.2-SNAPSHOT
         -DgroupId=org.wso2.extension.siddhi
         -DartifactId=org.wso2.extension.siddhi.streamprocessor.<siddhi_stream_processor_name>

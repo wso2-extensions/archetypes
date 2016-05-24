@@ -8,7 +8,7 @@ STEPS:
  2. Navigate to "<SIDDHI-EXTENSION-WINDOW_HOME>" and run the following command to create the siddhi window
     mvn archetype:generate
         -DarchetypeGroupId=org.wso2.carbon.extension.archetype
-        -DarchetypeArtifactId=org.wso2.carbon.extension.archetype.siddhi.window-archetype
+        -DarchetypeArtifactId=org.wso2.extension.siddhi.window-archetype
         -DarchetypeVersion=1.0.2-SNAPSHOT
         -DgroupId=org.wso2.extension.siddhi
         -DartifactId=org.wso2.extension.siddhi.window.<siddhi_window_name>

@@ -23,7 +23,7 @@
     <version>${version}</version>
 
     <packaging>bundle</packaging>
-    <name>WSO2 Siddi - Window Library For ${siddhi_window_name}</name>
+    <name>WSO2 Siddhi - Window Library For ${siddhi_window_name}</name>
     <url>http://wso2.org</url>
     <dependencies>
         <dependency>

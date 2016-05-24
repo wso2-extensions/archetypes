@@ -8,7 +8,7 @@ STEPS:
  2. Navigate to "<SIDDHI_FUNCTION_HOME>" and run the following command to create the siddhi function
     mvn archetype:generate
         -DarchetypeGroupId=org.wso2.carbon.extension.archetype
-        -DarchetypeArtifactId=org.wso2.carbon.extension.archetype.siddhi.function-archetype
+        -DarchetypeArtifactId=org.wso2.extension.siddhi.function-archetype
         -DarchetypeVersion=1.0.2-SNAPSHOT
         -DgroupId=org.wso2.extension.siddhi
         -DartifactId=org.wso2.extension.siddhi.function.<siddhi_function_name>

@@ -23,7 +23,7 @@
     <version>${version}</version>
 
     <packaging>bundle</packaging>
-    <name>WSO2 Siddi - Stream Processor Library For ${siddhi_stream_processor_name}</name>
+    <name>WSO2 Siddhi - Stream Processor Library For ${siddhi_stream_processor_name}</name>
     <url>http://wso2.org</url>
     <dependencies>
         <dependency>

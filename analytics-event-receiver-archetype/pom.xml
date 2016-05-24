@@ -11,7 +11,7 @@
 
     <groupId>org.wso2.carbon.extension.archetype</groupId>
     <packaging>maven-archetype</packaging>
-    <artifactId>org.wso2.carbon.extension.archetype.analytics.receiver-archetype</artifactId>
+    <artifactId>org.wso2.carbon.extension.analytics.receiver-archetype</artifactId>
     <version>1.0.2-SNAPSHOT</version>
     <name>WSO2 Carbon - Analytics Receiver Archetype for Template</name>
     <url>http://wso2.org</url>

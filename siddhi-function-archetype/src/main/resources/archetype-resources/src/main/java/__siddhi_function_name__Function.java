@@ -26,7 +26,7 @@ import org.wso2.siddhi.query.api.definition.Attribute;
 import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 
 /**
- * Siddi Function for ${siddhi_function_name}
+ * Siddhi Function for ${siddhi_function_name}
  */
 public class ${siddhi_function_name}Function extends FunctionExecutor {
 

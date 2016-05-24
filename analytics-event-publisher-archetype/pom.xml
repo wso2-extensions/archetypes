@@ -27,7 +27,7 @@
     </parent>
 
     <packaging>maven-archetype</packaging>
-    <artifactId>org.wso2.carbon.extension.archetype.analytics.publisher-archetype</artifactId>
+    <artifactId>org.wso2.carbon.extension.analytics.publisher-archetype</artifactId>
     <version>1.0.2-SNAPSHOT</version>
     <name>WSO2 Carbon - Analytics Publisher Archetype for Template</name>
     <url>http://wso2.org</url>

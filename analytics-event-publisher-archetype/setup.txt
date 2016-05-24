@@ -8,7 +8,7 @@ STEPS:
  2. Navigate to "<ANALYTICS-EVENT-PUBLISHER_HOME>" and run the following command to create the carbon adaptor
     mvn archetype:generate
         -DarchetypeGroupId=org.wso2.carbon.extension.archetype
-        -DarchetypeArtifactId=org.wso2.carbon.extension.archetype.analytics.publisher-archetype
+        -DarchetypeArtifactId=org.wso2.carbon.extension.analytics.publisher-archetype
         -DarchetypeVersion=1.0.2-SNAPSHOT
         -DgroupId=org.wso2.carbon.extension.analytics
         -DartifactId=org.wso2.carbon.extension.analytics.publisher.<carbon_stream_processor_name>

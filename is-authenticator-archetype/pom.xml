@@ -24,7 +24,6 @@
         <version>1.0.2-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.wso2.carbon.extension.archetype</groupId>
     <artifactId>org.wso2.carbon.extension.archetype.is.authenticator-archetype</artifactId>
     <version>1.0.2-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>

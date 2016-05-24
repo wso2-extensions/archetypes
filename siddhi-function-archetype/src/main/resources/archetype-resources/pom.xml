@@ -23,7 +23,7 @@
     <version>${version}</version>
 
     <packaging>bundle</packaging>
-    <name>WSO2 Siddi - Function Library For ${siddhi_function_name}</name>
+    <name>WSO2 Siddhi - Function Library For ${siddhi_function_name}</name>
     <url>http://wso2.org</url>
     <dependencies>
         <dependency>

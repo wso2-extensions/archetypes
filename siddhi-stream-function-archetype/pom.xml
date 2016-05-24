@@ -27,7 +27,7 @@
     </parent>
 
     <packaging>maven-archetype</packaging>
-    <artifactId>org.wso2.carbon.extension.archetype.siddhi.streamfunction-archetype</artifactId>
+    <artifactId>org.wso2.extension.siddhi.streamfunction-archetype</artifactId>
     <version>1.0.2-SNAPSHOT</version>
     <name>WSO2 Siddhi - Stream Function Archetype for Template</name>
     <url>http://wso2.org</url>
