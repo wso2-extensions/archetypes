@@ -21,6 +21,6 @@
             	<log level="full">
 			<property name="*******template_param********" expression="$func:generated_param" />
 		</log>
-		<class name="org.wso2.carbon.connector.${connector_name}Connector" />
+		<class name="${package}.${connector_name}Connector" />
         </sequence>
 </template>
