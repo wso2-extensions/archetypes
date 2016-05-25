@@ -1,0 +1,25 @@
+Product: Template for WSO2 ANALYTICS-EVENT-PUBLISHER
+
+STEPS:
+
+ 1. Navigate to "<ANALYTICS-EVENT-PUBLISHER_HOME>/analytics-event-publisher-archetype" and run the following command
+         mvn clean install
+
+ 2. Navigate to "<ANALYTICS-EVENT-PUBLISHER_HOME>" and run the following command to create the carbon adaptor
+    mvn archetype:generate
+        -DarchetypeGroupId=org.wso2.carbon.extension.archetype
+        -DarchetypeArtifactId=org.wso2.carbon.extension.analytics.publisher-archetype
+        -DarchetypeVersion=1.0.2-SNAPSHOT
+        -DgroupId=org.wso2.carbon.extension.analytics
+        -DartifactId=org.wso2.carbon.extension.analytics.publisher.<carbon_stream_processor_name>
+        -Dpackage=org.wso2.carbon.extension.analytics.publisher.<carbon_stream_processor_name>
+        -Dversion=1.0.0
+        
+    Please enter the <carbon_stream_processor_name> in lower camel case in above DartifactId and Dpackagecommand line
+    eg:- org.wso2.carbon.extension.analytics.publisher.sample
+
+ 3. Enter the extension name after executing steps 1 & 2. Please enter the extension name in upper camel case
+    eg:- carbon_analytics_publisher_name : : Sample
+
+ 4. Confirm the extension name
+     Y : : Y

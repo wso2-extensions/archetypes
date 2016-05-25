@@ -14,23 +14,20 @@
  ~ See the License for the specific language governing permissions and
  ~ limitations under the License.
 -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <groupId>org.wso2.carbon.extension.archetype</groupId>
         <artifactId>carbon-extension-archetype</artifactId>
+        <groupId>org.wso2.carbon.extension.archetype</groupId>
         <version>1.0.2-SNAPSHOT</version>
     </parent>
 
-    <artifactId>org.wso2.carbon.extension.archetype.is.authenticator-archetype</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
-    <name>WSO2 Carbon - Authenticator Archetype for Template</name>
-    <description>Platform Parent pom hold the properties, plugins which are required to build carbon components, carbon
-        features and products
-    </description>
+    <artifactId>org.wso2.extension.siddhi.aggregator-archetype</artifactId>
+    <version>1.0.2-SNAPSHOT</version>
+    <name>WSO2 Siddhi - Aggregator Archetype for Template</name>
     <url>http://wso2.org</url>
     <build>
         <extensions>
@@ -45,7 +42,6 @@
                 <version>2.2</version>
             </extension>
         </extensions>
-
         <pluginManagement>
             <plugins>
                 <plugin>

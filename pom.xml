@@ -16,9 +16,9 @@
  ~ specific language governing permissions and limitations
  ~ under the License.
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.wso2</groupId>
         <artifactId>wso2</artifactId>
@@ -29,7 +29,7 @@
     <artifactId>carbon-extension-archetype</artifactId>
     <version>1.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>WSO2 Carbon Extension - Archetype Pom</name>
+    <name>WSO2 Carbon - Extension Archetype Pom</name>
     <url>http://wso2.org</url>
 
     <profiles>
@@ -42,6 +42,13 @@
                 <module>esb-connector-archetype</module>
                 <module>is-authenticator-archetype</module>
                 <module>is-provisioning-connector-archetype</module>
+                <module>analytics-event-publisher-archetype</module>
+                <module>analytics-event-receiver-archetype</module>
+                <module>siddhi-aggregator-archetype</module>
+                <module>siddhi-function-archetype</module>
+                <module>siddhi-stream-function-archetype</module>
+                <module>siddhi-stream-processor-archetype</module>
+                <module>siddhi-window-archetype</module>
             </modules>
         </profile>
     </profiles>
