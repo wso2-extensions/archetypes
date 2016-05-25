@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ~ Copyright (c) 2015 WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ ~ Copyright (c) 2016 WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  ~
  ~ Licensed under the Apache License, Version 2.0 (the "License");
  ~ you may not use this file except in compliance with the License.
@@ -46,10 +46,20 @@
                 <include>**/*.java</include>
             </includes>
         </fileSet>
+        <fileSet>
+            <directory>src/test/resources</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>repository</directory>
+            <includes>
+                <include>**/*.txt</include>
+            </includes>
+        </fileSet>
     </fileSets>
     <requiredProperties>
-
         <requiredProperty key="connector_name"/>
-
     </requiredProperties>
 </archetype-descriptor>

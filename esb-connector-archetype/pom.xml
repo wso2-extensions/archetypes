@@ -19,20 +19,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.wso2.carbon.extension.archetype</groupId>
         <artifactId>carbon-extension-archetype</artifactId>
         <version>1.0.2-SNAPSHOT</version>
     </parent>
-
-    <groupId>org.wso2.carbon.extension.archetype</groupId>
     <artifactId>org.wso2.carbon.extension.archetype.esb.connector-archetype</artifactId>
     <version>1.0.2-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
-
     <name>WSO2 Carbon - Connector Archetype for Templating</name>
-
     <build>
         <extensions>
             <extension>
@@ -46,7 +41,6 @@
                 <version>2.2</version>
             </extension>
         </extensions>
-
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -56,13 +50,7 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <description>Platform Parent pom hold the properties, plugins which are required to build carbon components, carbon
-        features and products
-    </description>
-
     <url>http://wso2.org</url>
-
     <licenses>
         <license>
             <name>Apache License Version 2.0</name>

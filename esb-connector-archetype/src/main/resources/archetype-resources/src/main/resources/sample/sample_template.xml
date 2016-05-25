@@ -1,8 +1,5 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 <!--
-   Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+   Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 
    WSO2 Inc. licenses this file to you under the Apache License,
    Version 2.0 (the "License"); you may not use this file except
@@ -18,12 +15,12 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<template xmlns="http://ws.apache.org/ns/synapse" name="${connector_name.toLowerCase()}_generated_func()">
+<template xmlns="http://ws.apache.org/ns/synapse" name="sample_template">
         <parameter name="generated_param"/>
         <sequence>
             	<log level="full">
 			<property name="*******template_param********" expression="$func:generated_param" />
 		</log>
-		<class name="${package}.${connector_name}" />
+		<class name="org.wso2.carbon.connector.${connector_name}Connector" />
         </sequence>
 </template>
