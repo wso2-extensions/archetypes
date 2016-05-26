@@ -21,11 +21,11 @@
     <parent>
         <groupId>org.wso2.carbon.extension.archetype</groupId>
         <artifactId>carbon-extension-archetype</artifactId>
-        <version>1.0.2-SNAPSHOT</version>
+        <version>1.0.2</version>
     </parent>
 
     <artifactId>org.wso2.carbon.extension.archetype.is.authenticator-archetype</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <packaging>maven-archetype</packaging>
     <name>WSO2 Carbon - Authenticator Archetype for Template</name>
     <description>Platform Parent pom hold the properties, plugins which are required to build carbon components, carbon
