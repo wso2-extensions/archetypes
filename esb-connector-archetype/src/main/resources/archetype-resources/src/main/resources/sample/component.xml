@@ -1,9 +1,6 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-   Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+   Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 
    WSO2 Inc. licenses this file to you under the Apache License,
    Version 2.0 (the "License"); you may not use this file except
@@ -21,8 +18,8 @@
 -->
 <component name="sample" type="synapse/template" >
     <subComponents> 
-		<component name="init" >
-	    		<file>${connector_name}-template.xml</file>
+		<component name="sample_template" >
+	    		<file>sample_template.xml</file>
 	    		<description>sample wso2 connector method</description>
 		</component>			
     </subComponents>    

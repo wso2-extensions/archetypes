@@ -1,8 +1,5 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 /*
-*  Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
 *  WSO2 Inc. licenses this file to you under the Apache License,
 *  Version 2.0 (the "License"); you may not use this file except
@@ -24,19 +21,19 @@ import org.apache.synapse.MessageContext;
 import org.wso2.carbon.connector.core.AbstractConnector;
 import org.wso2.carbon.connector.core.ConnectException;
 
-public class ${connector_name} extends AbstractConnector {
+/**
+ * Sample method implementation.
+ */
+public class ${connector_name}Connector extends AbstractConnector {
 
     @Override
     public void connect(MessageContext messageContext) throws ConnectException {
         Object templateParam = getParameter(messageContext, "generated_param");
-        
         try {
-            System.out.println("Hello WORLD " + "${connector_name} !!!" + " : paramter :" + templateParam); 	
+            log.info("${connector_name} sample connector received message :" + templateParam);
             /**Add your connector code here 
             **/
-            
         } catch (Exception e) {
-            //System.out.println("ERROR : " + e.getMessage());
 	    throw new ConnectException(e);	
         }
     }

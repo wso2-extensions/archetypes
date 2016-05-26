@@ -1,9 +1,6 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-   Copyright (c) 2015, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+   Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 
    WSO2 Inc. licenses this file to you under the Apache License,
    Version 2.0 (the "License"); you may not use this file except
@@ -20,7 +17,7 @@
    under the License.
 -->
 <connector>
-    <component name="${connector_name}" package="${package}" >
+    <component name="Sample" package="org.wso2.carbon.connector" >
         <dependency component="config" />
         <dependency component="sample" />
         <description>wso2 sample connector library</description>
