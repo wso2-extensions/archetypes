@@ -21,10 +21,10 @@
     <parent>
         <groupId>org.wso2.carbon.extension.archetype</groupId>
         <artifactId>carbon-extension-archetype</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3-SNAPSHOT</version>
     </parent>
     <artifactId>org.wso2.carbon.extension.archetype.esb.connector-archetype</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
     <name>WSO2 Carbon - Connector Archetype for Templating</name>
     <build>

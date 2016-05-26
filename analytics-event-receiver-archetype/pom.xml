@@ -4,13 +4,13 @@
     <parent>
         <artifactId>carbon-extension-archetype</artifactId>
         <groupId>org.wso2.carbon.extension.archetype</groupId>
-        <version>1.0.2</version>
+        <version>1.0.3-SNAPSHOT</version>
     </parent>
 
     <groupId>org.wso2.carbon.extension.archetype</groupId>
     <packaging>maven-archetype</packaging>
     <artifactId>org.wso2.carbon.extension.analytics.receiver-archetype</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
     <name>WSO2 Carbon - Analytics Receiver Archetype for Template</name>
     <url>http://wso2.org</url>
     <build>
