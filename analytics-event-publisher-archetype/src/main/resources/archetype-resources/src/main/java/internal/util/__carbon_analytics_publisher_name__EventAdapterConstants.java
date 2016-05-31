@@ -22,5 +22,4 @@ public final class ${carbon_analytics_publisher_name}EventAdapterConstants {
 
     private ${carbon_analytics_publisher_name}EventAdapterConstants() {
     }
-
 }

@@ -69,8 +69,8 @@ public class ${carbon_analytics_receiver_name}EventAdapterFactory extends InputE
      * This method creates the receiver by specifying event adapter configuration
      * and global properties which are common to every adapter type.
      *
-     * @param inputEventAdapterConfiguration
-     * @param map
+     * @param inputEventAdapterConfiguration.
+     * @param map.
      * @return
      */
     @Override

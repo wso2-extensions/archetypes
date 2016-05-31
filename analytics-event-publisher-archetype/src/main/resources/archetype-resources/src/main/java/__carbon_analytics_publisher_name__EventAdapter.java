@@ -29,17 +29,16 @@ public class ${carbon_analytics_publisher_name}EventAdapter implements OutputEve
      * This method is called when initiating event publisher bundle.
      * Relevant code segments which are needed when loading OSGI bundle can be included in this method.
      *
-     * @throws OutputEventAdapterException
+     * @throws OutputEventAdapterException.
      */
     public void init() throws OutputEventAdapterException {
-
     }
 
     /**
      * This method is used to test the connection of the publishing server.
      *
-     * @throws TestConnectionNotSupportedException
-     * @throws ConnectionUnavailableException
+     * @throws TestConnectionNotSupportedException.
+     * @throws ConnectionUnavailableException.
      */
     public void testConnect() throws TestConnectionNotSupportedException, ConnectionUnavailableException {
 
@@ -48,35 +47,31 @@ public class ${carbon_analytics_publisher_name}EventAdapter implements OutputEve
     /**
      * Can be called to connect to back end before events are published.
      *
-     * @throws ConnectionUnavailableException
+     * @throws ConnectionUnavailableException.
      */
     public void connect() throws ConnectionUnavailableException {
-
     }
 
     /**
      * Publish events. Throws ConnectionUnavailableException if it cannot connect to the back end.
      *
-     * @param o
-     * @param map
-     * @throws ConnectionUnavailableException
+     * @param o.
+     * @param map.
+     * @throws ConnectionUnavailableException.
      */
     public void publish(Object o, Map<String, String> map) throws ConnectionUnavailableException {
-
     }
 
     /**
      * Will be called after publishing is done, or when ConnectionUnavailableException is thrown.
      */
     public void disconnect() {
-
     }
 
     /**
      * The method can be used to clean all the resources consumed.
      */
     public void destroy() {
-
     }
 
     /**

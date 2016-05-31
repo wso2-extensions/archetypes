@@ -45,14 +45,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 /**
- * ${siddhi_stream_processor_name}
+ * ${siddhi_stream_processor_name}.
  */
-
 public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProcessor implements
         SchedulingProcessor, FindableProcessor {
-
     private long timeInMilliSeconds;
     private ComplexEventChunk<StreamEvent> expiredEventChunk;
     private Scheduler scheduler;
@@ -71,26 +68,24 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
 
     /**
      * The init method of the ${siddhi_stream_processor_name}StreamProcessor,
-     * this method will be called before other methods
+     * this method will be called before other methods.
      *
-     * @param inputDefinition              the incoming stream definition
-     * @param attributeExpressionExecutors the executors of each function parameters
-     * @param executionPlanContext         the context of the execution plan
-     * @return the additional output attributes introduced by the function
+     * @param inputDefinition              the incoming stream definition.
+     * @param attributeExpressionExecutors the executors of each function parameters.
+     * @param executionPlanContext         the context of the execution plan.
+     * @return the additional output attributes introduced by the function.
      */
     @Override
     protected List<Attribute> init(AbstractDefinition inputDefinition,
                                    ExpressionExecutor[] attributeExpressionExecutors,
                                    ExecutionPlanContext executionPlanContext) {
-        //Sample code begin
+        //Sample code begin.
         this.executionPlanContext = executionPlanContext;
         this.expiredEventChunk = new ComplexEventChunk<StreamEvent>(false);
-
         if (attributeExpressionExecutors.length == 1) {
             if (attributeExpressionExecutors[0] instanceof ConstantExpressionExecutor) {
                 if (attributeExpressionExecutors[0].getReturnType() == Attribute.Type.INT) {
                     timeInMilliSeconds = (Integer) ((ConstantExpressionExecutor) attributeExpressionExecutors[0]).getValue();
-
                 } else if (attributeExpressionExecutors[0].getReturnType() == Attribute.Type.LONG) {
                     timeInMilliSeconds = (Long) ((ConstantExpressionExecutor) attributeExpressionExecutors[0]).getValue();
                 } else {
@@ -102,32 +97,30 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
         } else {
             throw new ExecutionPlanValidationException("Custom Stream Processor should only have one/two parameter (<int|long|time> windowTime (and <int|long> startTime), but found " + attributeExpressionExecutors.length + " input attributes");
         }
-
         List<Attribute> attributeList = new ArrayList<Attribute>();
         attributeList.add(new Attribute("expiryTimeStamp", Attribute.Type.LONG));
         return attributeList;
-        //Sample code end
+        //Sample code end.
     }
 
     /**
-     * The main processing method that will be called upon event arrival
+     * The main processing method that will be called upon event arrival.
      *
-     * @param streamEventChunk      the event chunk that need to be processed
-     * @param nextProcessor         the next processor to which the success events need to be passed
-     * @param streamEventCloner     helps to clone the incoming event for local storage or modification
-     * @param complexEventPopulater helps to populate the events with the resultant attributes
+     * @param streamEventChunk      the event chunk that need to be processed.
+     * @param nextProcessor         the next processor to which the success events need to be passed.
+     * @param streamEventCloner     helps to clone the incoming event for local storage or modification.
+     * @param complexEventPopulater helps to populate the events with the resultant attributes.
      */
     @Override
     protected void process(ComplexEventChunk<StreamEvent> streamEventChunk, Processor nextProcessor,
                            StreamEventCloner streamEventCloner, ComplexEventPopulater complexEventPopulater) {
-        //Sample code begin
+        //Sample code begin.
         synchronized (this) {
             while (streamEventChunk.hasNext()) {
                 StreamEvent streamEvent = streamEventChunk.next();
                 long currentTime = executionPlanContext.getTimestampGenerator().currentTime();
                 long expireEventTime = currentTime + timeInMilliSeconds;
                 complexEventPopulater.populateComplexEvent(streamEvent, new Object[]{expireEventTime});
-
                 expiredEventChunk.reset();
                 while (expiredEventChunk.hasNext()) {
                     StreamEvent expiredEvent = expiredEventChunk.next();
@@ -140,13 +133,10 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
                         break;
                     }
                 }
-
                 if (streamEvent.getType() == StreamEvent.Type.CURRENT) {
-
                     StreamEvent clonedEvent = streamEventCloner.copyStreamEvent(streamEvent);
                     clonedEvent.setType(StreamEvent.Type.EXPIRED);
                     this.expiredEventChunk.add(clonedEvent);
-
                     if (lastTimestamp < clonedEvent.getTimestamp()) {
                         scheduler.notifyAt(clonedEvent.getTimestamp() + timeInMilliSeconds);
                         lastTimestamp = clonedEvent.getTimestamp();
@@ -158,7 +148,7 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
             expiredEventChunk.reset();
         }
         nextProcessor.process(streamEventChunk);
-        //Sample code end
+        //Sample code end.
     }
 
     /**
@@ -169,7 +159,7 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
      */
     @Override
     public void start() {
-        //Implement start logic to acquire relevant resources
+        //Implement start logic to acquire relevant resources.
     }
 
     /**
@@ -179,14 +169,14 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
      */
     @Override
     public void stop() {
-        //Implement stop logic to release the acquired resources
+        //Implement stop logic to release the acquired resources.
     }
 
     /**
      * Used to collect the serializable state of the processing element, that need to be
-     * persisted for the reconstructing the element to the same state on a different point of time
+     * persisted for the reconstructing the element to the same state on a different point of time.
      *
-     * @return stateful objects of the processing element as an array
+     * @return stateful objects of the processing element as an array.
      */
     @Override
     public Object[] currentState() {
@@ -198,11 +188,11 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
      * the element to the same state as if was on a previous point of time.
      *
      * @param state the stateful objects of the element as an array on
-     *              the same order provided by currentState().
+     *              the same order provided by currentState.
      */
     @Override
     public void restoreState(Object[] state) {
-        //Implement restore state logic
+        //Implement restore state logic.
         expiredEventChunk.clear();
         expiredEventChunk.add((StreamEvent) state[0]);
     }
@@ -222,9 +212,9 @@ public class ${siddhi_stream_processor_name}StreamProcessor extends StreamProces
     }
 
     /**
-     * method to sample
+     * method to sample.
      *
-     * @param currentTime currentTime
+     * @param currentTime currentTime.
      * @return
      */
     private long addTimeShift(long currentTime) {

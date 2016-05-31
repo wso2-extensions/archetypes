@@ -42,7 +42,7 @@ import java.util.Map;
 /**
  * ${siddhi_window_name} custom window.
  */
-public class ${siddhi_window_name}Window extends WindowProcessor implements FindableProcessor {
+public class ${siddhi_window_name}WindowProcessor extends WindowProcessor implements FindableProcessor {
     private int length;
     private int count = 0;
     private ComplexEventChunk<StreamEvent> expiredEventChunk;
@@ -55,12 +55,11 @@ public class ${siddhi_window_name}Window extends WindowProcessor implements Find
         this.length = length;
     }
 
-
     /**
-     * The init method of the WindowProcessor, this method will be called before other methods
+     * The init method of the WindowProcessor, this method will be called before other methods.
      *
-     * @param attributeExpressionExecutors the executors of each function parameters
-     * @param executionPlanContext         the context of the execution plan
+     * @param attributeExpressionExecutors the executors of each function parameters.
+     * @param executionPlanContext         the context of the execution plan.
      */
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
@@ -73,11 +72,11 @@ public class ${siddhi_window_name}Window extends WindowProcessor implements Find
     }
 
     /**
-     * The main processing method that will be called upon event arrival
+     * The main processing method that will be called upon event arrival.
      *
-     * @param streamEventChunk  the stream event chunk that need to be processed
-     * @param nextProcessor     the next processor to which the success events need to be passed
-     * @param streamEventCloner helps to clone the incoming event for local storage or modification
+     * @param streamEventChunk  the stream event chunk that need to be processed.
+     * @param nextProcessor     the next processor to which the success events need to be passed.
+     * @param streamEventCloner helps to clone the incoming event for local storage or modification.
      */
     @Override
     protected synchronized void process(ComplexEventChunk<StreamEvent> streamEventChunk, Processor nextProcessor,
@@ -148,7 +147,7 @@ public class ${siddhi_window_name}Window extends WindowProcessor implements Find
      */
     @Override
     public void start() {
-        //Implement start logic to acquire relevant resources
+        //Implement start logic to acquire relevant resources.
     }
 
     /**
@@ -158,12 +157,12 @@ public class ${siddhi_window_name}Window extends WindowProcessor implements Find
      */
     @Override
     public void stop() {
-        //Implement stop logic to release the acquired resources
+        //Implement stop logic to release the acquired resources.
     }
 
     /**
      * Used to collect the serializable state of the processing element, that need to be
-     * persisted for the reconstructing the element to the same state on a different point of time
+     * persisted for the reconstructing the element to the same state on a different point of time.
      *
      * @return stateful objects of the processing element as an array
      */

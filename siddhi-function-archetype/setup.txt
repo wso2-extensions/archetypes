@@ -9,7 +9,7 @@ STEPS:
     mvn archetype:generate
         -DarchetypeGroupId=org.wso2.carbon.extension.archetype
         -DarchetypeArtifactId=org.wso2.extension.siddhi.function-archetype
-        -DarchetypeVersion=2.0.0
+        -DarchetypeVersion=2.0.1-SNAPSHOT
         -DgroupId=org.wso2.extension.siddhi
         -DartifactId=org.wso2.extension.siddhi.function.<siddhi_function_name>
         -Dpackage=org.wso2.extension.siddhi.function.<siddhi_function_name>

@@ -37,20 +37,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ${siddhi_stream_function_name} custom streamFunctionProcessor
+ * ${siddhi_stream_function_name} custom streamFunctionProcessor.
  */
 public class ${siddhi_stream_function_name}StreamFunctionProcessor extends StreamFunctionProcessor {
 
-    private static final Logger LOGGER = Logger.getLogger(${siddhi_stream_function_name}StreamFunctionProcessor.class);
+    private static final Logger log = Logger.getLogger(${siddhi_stream_function_name}StreamFunctionProcessor.class);
     private final Geocoder geocoder = new Geocoder();
     private boolean debugModeOn;
 
     /**
      * The process method of the ${siddhi_stream_function_name}StreamFunctionProcessor,
-     * used when more than one function parameters are provided
+     * used when more than one function parameters are provided.
      *
-     * @param data the data values for the function parameters
-     * @return the data for additional output attributes introduced by the function
+     * @param data the data values for the function parameters.
+     * @return the data for additional output attributes introduced by the function.
      */
     @Override
     protected Object[] process(Object[] data) {
@@ -59,26 +59,23 @@ public class ${siddhi_stream_function_name}StreamFunctionProcessor extends Strea
 
     /**
      * The process method of the ${siddhi_stream_function_name}StreamFunctionProcessor,
-     * used when zero or one function parameter is provided
+     * used when zero or one function parameter is provided.
      *
-     * @param data null if the function parameter count is zero or runtime data value of the function parameter
-     * @return the data for additional output attribute introduced by the function
+     * @param data null if the function parameter count is zero or runtime data value of the function parameter.
+     * @return the data for additional output attribute introduced by the function.
      */
     @Override
     protected Object[] process(Object data) {
         String location = data.toString();
-
         // Make the geocode request to API library
         GeocoderRequest geocoderRequest = new GeocoderRequestBuilder()
                 .setAddress(location)
                 .setLanguage("en")
                 .getGeocoderRequest();
-
         double latitude, longitude;
         String formattedAddress;
         try {
             GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
-
             if (!geocoderResponse.getResults().isEmpty()) {
                 latitude = geocoderResponse.getResults().get(0).getGeometry().getLocation()
                         .getLat().doubleValue();
@@ -90,13 +87,11 @@ public class ${siddhi_stream_function_name}StreamFunctionProcessor extends Strea
                 longitude = -1.0;
                 formattedAddress = "N/A";
             }
-
         } catch (IOException e) {
             throw new ExecutionPlanRuntimeException("Error in connection to Google Maps API.", e);
         }
-
         if (debugModeOn) {
-            LOGGER.debug("Formatted address: " + formattedAddress + ", Location coordinates: (" +
+            log.debug("Formatted address: " + formattedAddress + ", Location coordinates: (" +
                     latitude + ", " + longitude + ")");
         }
         return new Object[]{formattedAddress, latitude, longitude};
@@ -104,17 +99,17 @@ public class ${siddhi_stream_function_name}StreamFunctionProcessor extends Strea
 
     /**
      * The init method of the ${siddhi_stream_function_name}StreamFunctionProcessor,
-     * this method will be called before other methods
+     * this method will be called before other methods.
      *
-     * @param inputDefinition              the incoming stream definition
-     * @param attributeExpressionExecutors the executors of each function parameters
-     * @param executionPlanContext         the context of the execution plan
-     * @return the additional output attributes introduced by the function
+     * @param inputDefinition              the incoming stream definition.
+     * @param attributeExpressionExecutors the executors of each function parameters.
+     * @param executionPlanContext         the context of the execution plan.
+     * @return the additional output attributes introduced by the function.
      */
     @Override
     protected List<Attribute> init(AbstractDefinition inputDefinition,
                                    ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
-        debugModeOn = LOGGER.isDebugEnabled();
+        debugModeOn = log.isDebugEnabled();
         if (attributeExpressionExecutors[0].getReturnType() != Attribute.Type.STRING) {
             throw new ExecutionPlanCreationException("First parameter should be of type string");
         }
@@ -131,7 +126,7 @@ public class ${siddhi_stream_function_name}StreamFunctionProcessor extends Strea
      */
     @Override
     public void start() {
-        //Implement start logic to acquire relevant resources
+        //Implement start logic to acquire relevant resources.
     }
 
     /**
@@ -140,14 +135,14 @@ public class ${siddhi_stream_function_name}StreamFunctionProcessor extends Strea
      */
     @Override
     public void stop() {
-        //Implement stop logic to release the acquired resources
+        //Implement stop logic to release the acquired resources.
     }
 
     /**
      * Used to collect the serializable state of the processing element, that need to be
-     * persisted for the reconstructing the element to the same state on a different point of time
+     * persisted for the reconstructing the element to the same state on a different point of time.
      *
-     * @return stateful objects of the processing element as an array
+     * @return stateful objects of the processing element as an array.
      */
     @Override
     public Object[] currentState() {

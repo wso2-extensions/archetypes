@@ -29,7 +29,6 @@ import org.wso2.siddhi.core.query.output.callback.QueryCallback;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 
-
 public class ${siddhi_stream_processor_name}StreamProcessorTestCase {
     private static Logger logger = Logger.getLogger(${siddhi_stream_processor_name}StreamProcessorTestCase.class);
     private int inEventCount;
@@ -41,14 +40,11 @@ public class ${siddhi_stream_processor_name}StreamProcessorTestCase {
         inEventCount = 0;
         removeEventCount = 0;
         eventArrived = false;
-
     }
 
     @Test
     public void customStreamProcessorTest1() throws InterruptedException {
-
         SiddhiManager siddhiManager = new SiddhiManager();
-
         String cseEventStream = "" +
                 "define stream cseEventStream (symbol string, price float, volume int);";
         String query = "" +
@@ -56,9 +52,7 @@ public class ${siddhi_stream_processor_name}StreamProcessorTestCase {
                 "from cseEventStream#${siddhi_stream_processor_name}:${siddhi_stream_processor_name}(5 sec) " +
                 "select symbol, price, volume, expiryTimeStamp " +
                 "insert all events into outputStream ;";
-
         ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(cseEventStream + query);
-
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
@@ -67,13 +61,10 @@ public class ${siddhi_stream_processor_name}StreamProcessorTestCase {
                     inEventCount = inEventCount + inEvents.length;
                 } else if (removeEvents != null) {
                     removeEventCount = removeEventCount + removeEvents.length;
-
                 }
                 eventArrived = true;
             }
-
         });
-
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("cseEventStream");
         executionPlanRuntime.start();
         inputHandler.send(new Object[]{"IBM", 700f, 0});

@@ -29,29 +29,25 @@ import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 
 /**
- * Test for ${siddhi_function_name} function
+ * Test for ${siddhi_function_name} function.
  */
 public class ${siddhi_function_name}TestCase {
     // conversion equivalencies
     private static final double KILOMETERS_PER_MILE = 1.609344;
-
     private static Logger logger = Logger.getLogger(${siddhi_function_name}TestCase.class);
     protected static SiddhiManager siddhiManager;
 
     @Test
     public void testProcess() throws Exception {
         logger.info("${siddhi_function_name}FunctionExtension TestCase");
-
         siddhiManager = new SiddhiManager();
         String executionPlan = "define stream ${siddhi_function_name}Stream (inValue int); ";
-
         String eventFuseExecutionPlan = ("@info(name = 'query1') from ${siddhi_function_name}Stream "
                 + " select ${siddhi_function_name}:${siddhi_function_name}Function(inValue) "
                 + "as ${siddhi_function_name}Value "
                 + " insert into OutMediationStream;");
         ExecutionPlanRuntime executionPlanRuntime = siddhiManager
             .createExecutionPlanRuntime(executionPlan + eventFuseExecutionPlan);
-
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents,

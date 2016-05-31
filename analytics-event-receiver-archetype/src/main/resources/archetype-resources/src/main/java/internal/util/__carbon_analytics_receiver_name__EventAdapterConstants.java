@@ -21,6 +21,6 @@ package ${package}.internal.util;
 public final class ${carbon_analytics_receiver_name}EventAdapterConstants {
 
     private ${carbon_analytics_receiver_name}EventAdapterConstants() {
-    }
 
+    }
 }

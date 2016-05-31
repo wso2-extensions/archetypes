@@ -26,7 +26,7 @@ import org.wso2.siddhi.query.api.definition.Attribute;
 import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 
 /**
- * Siddhi Function for ${siddhi_function_name}
+ * Siddhi Function for ${siddhi_function_name}.
  */
 public class ${siddhi_function_name}Function extends FunctionExecutor {
 
@@ -34,10 +34,10 @@ public class ${siddhi_function_name}Function extends FunctionExecutor {
     private static final double KILOMETERS_PER_MILE = 1.609344;
 
     /**
-     * The initialization method for ${siddhi_function_name}, this method will be called before the other methods
+     * The initialization method for ${siddhi_function_name}, this method will be called before the other methods.
      *
-     * @param attributeExpressionExecutors the executors of each function parameter
-     * @param executionPlanContext         the context of the execution plan
+     * @param attributeExpressionExecutors the executors of each function parameter.
+     * @param executionPlanContext         the context of the execution plan.
      */
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
@@ -61,10 +61,10 @@ public class ${siddhi_function_name}Function extends FunctionExecutor {
 
     /**
      * The main execution method which will be called upon event arrival
-     * when there are more than one function parameter
+     * when there are more than one function parameter.
      *
-     * @param data the runtime values of function parameters
-     * @return the function result
+     * @param data the runtime values of function parameters.
+     * @return the function result.
      */
     @Override
     protected Object execute(Object[] data) {
@@ -73,17 +73,17 @@ public class ${siddhi_function_name}Function extends FunctionExecutor {
 
     /**
      * The main execution method which will be called upon event arrival
-     * when there are zero or one function parameter
+     * when there are zero or one function parameter.
      *
      * @param data null if the function parameter count is zero or
-     *             runtime data value of the function parameter
-     * @return the function result
+     *             runtime data value of the function parameter.
+     * @return the function result.
      */
     @Override
     protected Object execute(Object data) {
-        //Sample code
+        //Sample code.
         if (data != null) {
-            //type-conversion
+            //type-conversion.
             if (data instanceof Integer) {
                 int inputInt = (Integer) data;
                 return ((double) inputInt / KILOMETERS_PER_MILE);
@@ -110,7 +110,7 @@ public class ${siddhi_function_name}Function extends FunctionExecutor {
      */
     @Override
     public void start() {
-        //Implement start logic to acquire relevant resources
+        //Implement start logic to acquire relevant resources.
     }
 
     /**
@@ -120,7 +120,7 @@ public class ${siddhi_function_name}Function extends FunctionExecutor {
      */
     @Override
     public void stop() {
-        //Implement stop logic to release the acquired resources
+        //Implement stop logic to release the acquired resources.
     }
 
     @Override
@@ -128,12 +128,11 @@ public class ${siddhi_function_name}Function extends FunctionExecutor {
         return Attribute.Type.DOUBLE;
     }
 
-
     /**
      * Used to collect the serializable state of the processing element, that need to be
-     * persisted for the reconstructing the element to the same state on a different point of time
+     * persisted for the reconstructing the element to the same state on a different point of time.
      *
-     * @return stateful objects of the processing element as an array
+     * @return stateful objects of the processing element as an array.
      */
     @Override
     public Object[] currentState() {

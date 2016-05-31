@@ -29,7 +29,6 @@ import org.wso2.siddhi.core.query.output.callback.QueryCallback;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 
-
 public class ${siddhi_aggregator_name}AggregateFunctionTestCase {
     private static Logger logger = Logger.getLogger(${siddhi_aggregator_name}AggregateFunctionTestCase.class);
     protected static SiddhiManager siddhiManager;
@@ -43,16 +42,13 @@ public class ${siddhi_aggregator_name}AggregateFunctionTestCase {
     @Test
     public void testProcess() throws Exception {
         logger.info("${siddhi_aggregator_name}AggregateFunction TestCase");
-
         siddhiManager = new SiddhiManager();
         String executionPlan = "define stream pizzaOrder (orderNo int); ";
-
         String eventFuseExecutionPlan = ("@info(name = 'query1') from pizzaOrder#window.time(5 sec) "
                 + " select ${siddhi_aggregator_name}:${siddhi_aggregator_name}Aggregator(orderNo) as totalOrders "
                 + " insert into OutMediationStream;");
         ExecutionPlanRuntime executionPlanRuntime = siddhiManager
                 .createExecutionPlanRuntime(executionPlan + eventFuseExecutionPlan);
-
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
@@ -62,7 +58,6 @@ public class ${siddhi_aggregator_name}AggregateFunctionTestCase {
                 }
             }
         });
-
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("pizzaOrder");
         executionPlanRuntime.start();
         Thread.sleep(100);
@@ -74,7 +69,6 @@ public class ${siddhi_aggregator_name}AggregateFunctionTestCase {
         Thread.sleep(100);
         inputHandler.send(new Object[]{8368});
         Thread.sleep(100);
-
         executionPlanRuntime.shutdown();
         Assert.assertEquals("Event count ",Long.valueOf(4),count);
     }
