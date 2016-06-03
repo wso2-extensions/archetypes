@@ -22,7 +22,7 @@ import org.wso2.carbon.event.output.adapter.core.OutputEventAdapter;
 import org.wso2.carbon.event.output.adapter.core.OutputEventAdapterConfiguration;
 import org.wso2.carbon.event.output.adapter.core.OutputEventAdapterFactory;
 import org.wso2.carbon.event.output.adapter.core.Property;
-
+import org.wso2.carbon.extension.analytics.internal.util.${carbon_analytics_publisher_name}EventAdapterConstants;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +40,7 @@ public class ${carbon_analytics_publisher_name}EventAdapterFactory extends Outpu
      */
     @Override
     public String getType() {
-        return null;
+        return ${carbon_analytics_publisher_name}EventAdapterConstants.ADAPTER_TYPE;
     }
 
     /**
@@ -50,7 +50,9 @@ public class ${carbon_analytics_publisher_name}EventAdapterFactory extends Outpu
      */
     @Override
     public List<String> getSupportedMessageFormats() {
-        return null;
+        List<String> supportedMessageFormats = new ArrayList<String>();
+        //Supported message formats.
+        return supportedMessageFormats;
     }
 
     /**

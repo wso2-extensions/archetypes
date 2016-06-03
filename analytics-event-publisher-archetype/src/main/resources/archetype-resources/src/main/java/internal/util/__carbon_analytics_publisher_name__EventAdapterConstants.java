@@ -20,6 +20,8 @@ package ${package}.internal.util;
 
 public final class ${carbon_analytics_publisher_name}EventAdapterConstants {
 
+    public static final String ADAPTER_TYPE_LOGGER = "${carbon_analytics_publisher_name}";
+
     private ${carbon_analytics_publisher_name}EventAdapterConstants() {
     }
 }
