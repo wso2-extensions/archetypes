@@ -158,7 +158,7 @@
                         </Import-Package>
                         <Export-Package>
                             !${package}.internal,
-                            org.wso2.carbon.identity.authenticator.*
+                            ${package}.*
                         </Export-Package>
                     </instructions>
                 </configuration>
