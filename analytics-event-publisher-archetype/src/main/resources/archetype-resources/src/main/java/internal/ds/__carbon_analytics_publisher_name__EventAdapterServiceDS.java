@@ -36,20 +36,19 @@ public class ${carbon_analytics_publisher_name}EventAdapterServiceDS {
     /**
      * Deployment of the ${carbon_analytics_publisher_name} event adapter service will be done.
      *
-     * @param context
+     * @param context.
      */
     protected void activate(ComponentContext context) {
-
         try {
             OutputEventAdapterFactory ${carbon_analytics_publisher_name.toLowerCase()}EventAdaptorFactory =
                     new ${carbon_analytics_publisher_name}EventAdapterFactory();
             context.getBundleContext().registerService(OutputEventAdapterFactory.class.getName(),
                     ${carbon_analytics_publisher_name.toLowerCase()}EventAdaptorFactory, null);
             if (log.isDebugEnabled()) {
-                log.debug("Successfully deployed the Output ${carbon_analytics_publisher_name} event service");
+                log.debug("Successfully deployed the Output ${carbon_analytics_publisher_name} event service.");
             }
         } catch (RuntimeException e) {
-            log.error("Can not create  the Output ${carbon_analytics_publisher_name} event service ", e);
+            log.error("Can not create  the Output ${carbon_analytics_publisher_name} event service. ", e);
         }
     }
 }

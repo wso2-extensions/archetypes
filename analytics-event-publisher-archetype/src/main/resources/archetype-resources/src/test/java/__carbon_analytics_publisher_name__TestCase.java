@@ -27,12 +27,9 @@ public class ${carbon_analytics_publisher_name}TestCase extends CEPIntegrationTe
     private static final Log log = LogFactory.getLog(${carbon_analytics_publisher_name}TestCase.class);
 
     @BeforeClass(alwaysRun = true)
-    public void init()
-            throws Exception {
-
+    public void init() throws Exception {
         super.init(TestUserMode.SUPER_TENANT_ADMIN);
         String loggedInSessionCookie = getSessionCookie();
-
         eventReceiverAdminServiceClient = configurationUtil.getEventReceiverAdminServiceClient(backendURL,
                 loggedInSessionCookie);
         eventStreamManagerAdminServiceClient = configurationUtil.getEventStreamManagerAdminServiceClient(backendURL,

@@ -24,7 +24,7 @@ import org.wso2.siddhi.core.query.selector.attribute.aggregator.AttributeAggrega
 import org.wso2.siddhi.query.api.definition.Attribute;
 
 /**
- * This Sample implemented for count you can implement based on this sample
+ * This Sample implemented for count you can implement based on this sample.
  */
 public class ${siddhi_aggregator_name}AggregateFunction extends AttributeAggregator {
 
@@ -32,14 +32,13 @@ public class ${siddhi_aggregator_name}AggregateFunction extends AttributeAggrega
     private long value = 0l;
 
     /**
-     * The initialization method for ${siddhi_aggregator_name}AggregatorFunction
+     * The initialization method for ${siddhi_aggregator_name}AggregatorFunction.
      *
-     * @param attributeExpressionExecutors are the executors of each attributes in the function
-     * @param executionPlanContext         Execution plan runtime context
+     * @param attributeExpressionExecutors are the executors of each attributes in the function.
+     * @param executionPlanContext         Execution plan runtime context.
      */
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
-
     }
 
     public Attribute.Type getReturnType() {
@@ -47,65 +46,65 @@ public class ${siddhi_aggregator_name}AggregateFunction extends AttributeAggrega
     }
 
     /**
-     * The process add method of the ${siddhi_aggregator_name}AggregateFunction, used when zero or one function parameter is provided
+     * The process add method of the ${siddhi_aggregator_name}AggregateFunction, used when zero or one function parameter is provided.
      *
-     * @param data null if the function parameter ${siddhi_aggregator_name} is zero or runtime data value of the function parameter
-     * @return the ${siddhi_aggregator_name} value
+     * @param data null if the function parameter ${siddhi_aggregator_name} is zero or runtime data value of the function parameter.
+     * @return the ${siddhi_aggregator_name} value.
      */
     @Override
     public Object processAdd(Object data) {
-        //Sample code
+        //Sample code.
         value++;
         return value;
     }
 
     /**
-     * The process add method of the ${siddhi_aggregator_name}AggregateFunction, used when more than one function parameters are provided
+     * The process add method of the ${siddhi_aggregator_name}AggregateFunction, used when more than one function parameters are provided.
      *
-     * @param data the data values for the function parameters
-     * @return the ${siddhi_aggregator_name} value
+     * @param data the data values for the function parameters.
+     * @return the ${siddhi_aggregator_name} value.
      */
     @Override
     public Object processAdd(Object[] data) {
-        //Sample code
+        //Sample code.
         value++;
         return value;
     }
 
     /**
-     * The process remove method of the ${siddhi_aggregator_name}AggregateFunction, used when zero or one function parameter is provided
+     * The process remove method of the ${siddhi_aggregator_name}AggregateFunction, used when zero or one function parameter is provided.
      *
-     * @param data null if the function parameter ${siddhi_aggregator_name} is zero or runtime data value of the function parameter
-     * @return the ${siddhi_aggregator_name} value
+     * @param data null if the function parameter ${siddhi_aggregator_name} is zero or runtime data value of the function parameter.
+     * @return the ${siddhi_aggregator_name} value.
      */
     @Override
     public Object processRemove(Object data) {
-        //Sample code
+        //Sample code.
         value--;
         return value;
     }
 
     /**
-     * The process remove method of the ${siddhi_aggregator_name}AggregateFunction, used when more than one function parameters are provided
+     * The process remove method of the ${siddhi_aggregator_name}AggregateFunction, used when more than one function parameters are provided.
      *
-     * @param data the data values for the function parameters
-     * @return the ${siddhi_aggregator_name} value
+     * @param data the data values for the function parameters.
+     * @return the ${siddhi_aggregator_name} value.
      */
     @Override
     public Object processRemove(Object[] data) {
-        //Sample code
+        //Sample code.
         value--;
         return value;
     }
 
     /**
-     * Reset ${siddhi_aggregator_name} value
+     * Reset ${siddhi_aggregator_name} value.
      *
-     * @return reset value
+     * @return reset value.
      */
     @Override
     public Object reset() {
-        //Sample code
+        //Sample code.
         value = 0l;
         return value;
     }
@@ -118,7 +117,7 @@ public class ${siddhi_aggregator_name}AggregateFunction extends AttributeAggrega
      */
     @Override
     public void start() {
-        //Nothing to start
+        //Nothing to start.
     }
 
     /**
@@ -128,14 +127,14 @@ public class ${siddhi_aggregator_name}AggregateFunction extends AttributeAggrega
      */
     @Override
     public void stop() {
-        //nothing to stop
+        //nothing to stop.
     }
 
     /**
      * Used to collect the serializable state of the processing element, that need to be
-     * persisted for the reconstructing the element to the same state on a different point of time
+     * persisted for the reconstructing the element to the same state on a different point of time.
      *
-     * @return stateful objects of the processing element as an array
+     * @return stateful objects of the processing element as an array.
      */
     @Override
     public Object[] currentState() {
@@ -151,7 +150,7 @@ public class ${siddhi_aggregator_name}AggregateFunction extends AttributeAggrega
      */
     @Override
     public void restoreState(Object[] state) {
-        //Sample code
+        //Sample code.
         value = (Long) state[0];
     }
 }

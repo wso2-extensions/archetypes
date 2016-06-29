@@ -29,7 +29,9 @@ import org.wso2.siddhi.core.query.output.callback.QueryCallback;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 
-
+/**
+ * ${siddhi_window_name} Test case.
+ */
 public class ${siddhi_window_name}WindowTestCase {
     private static Logger logger = Logger.getLogger(${siddhi_window_name}WindowTestCase.class);
     protected static SiddhiManager siddhiManager;
@@ -49,15 +51,11 @@ public class ${siddhi_window_name}WindowTestCase {
     @Test
     public void LengthWindow() throws InterruptedException {
         logger.info("Testing ${siddhi_window_name} length window with no of events smaller than window size");
-
         SiddhiManager siddhiManager = new SiddhiManager();
-
         String cseEventStream = "define stream cseEventStream (symbol string, price float, volume int);";
         String query = "@info(name = 'query1') from cseEventStream#window.length(4) " +
         "         select symbol,price,volume insert all events into outputStream ;";
-
         ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(cseEventStream + query);
-
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
@@ -68,7 +66,6 @@ public class ${siddhi_window_name}WindowTestCase {
                 eventArrived = true;
             }
         });
-
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("cseEventStream");
         executionPlanRuntime.start();
         inputHandler.send(new Object[]{"IBM", 700f, 0});

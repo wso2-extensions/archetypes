@@ -19,7 +19,7 @@ import org.wso2.carbon.event.input.adapter.core.InputEventAdapter;
 import org.wso2.carbon.event.input.adapter.core.InputEventAdapterConfiguration;
 import org.wso2.carbon.event.input.adapter.core.InputEventAdapterFactory;
 import org.wso2.carbon.event.input.adapter.core.Property;
-
+import org.wso2.carbon.extension.analytics.internal.util.${carbon_analytics_receiver_name}EventAdapterConstants;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +31,7 @@ public class ${carbon_analytics_receiver_name}EventAdapterFactory extends InputE
      */
     @Override
     public String getType() {
-        return null;
+        return ${carbon_analytics_receiver_name}EventAdapterConstants.ADAPTER_TYPE;
     }
 
     /**
@@ -41,7 +41,9 @@ public class ${carbon_analytics_receiver_name}EventAdapterFactory extends InputE
      */
     @Override
     public List<String> getSupportedMessageFormats() {
-        return null;
+        List<String> supportedMessageFormats = new ArrayList<String>();
+        //Supported message formats.
+        return supportedMessageFormats;
     }
 
     /**
@@ -69,8 +71,8 @@ public class ${carbon_analytics_receiver_name}EventAdapterFactory extends InputE
      * This method creates the receiver by specifying event adapter configuration
      * and global properties which are common to every adapter type.
      *
-     * @param inputEventAdapterConfiguration
-     * @param map
+     * @param inputEventAdapterConfiguration.
+     * @param map.
      * @return
      */
     @Override

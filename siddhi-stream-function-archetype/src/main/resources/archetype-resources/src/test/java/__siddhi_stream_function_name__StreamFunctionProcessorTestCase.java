@@ -33,14 +33,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ${siddhi_stream_function_name}StreamFunctionProcessorTestCase {
-    private static final Logger LOGGER =Logger
+    private static final Logger log =Logger
         .getLogger(${siddhi_stream_function_name}StreamFunctionProcessorTestCase.class);
     private static int eventCount = 0;
 
     @Test
     public void testProcess() throws Exception {
-        LOGGER.info("Init Siddhi setUp");
-
+        log.info("Init Siddhi setUp");
         SiddhiManager siddhiManager = new SiddhiManager();
         long start = System.currentTimeMillis();
         ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(
@@ -50,21 +49,17 @@ public class ${siddhi_stream_function_name}StreamFunctionProcessorTestCase {
                         + "select latitude, longitude, formattedAddress "
                         + "insert into dataOut");
         long end = System.currentTimeMillis();
-        LOGGER.info(String.format("Time to add query: [%f sec]", ((end - start) / 1000f)));
-
+        log.info(String.format("Time to add query: [%f sec]", ((end - start) / 1000f)));
         List<Object[]> data = new ArrayList<Object[]>();
         data.add(new Object[]{"gunasekara mawatha", "Regular", "Sun Nov 02 13:36:05 +0000 2014"});
         data.add(new Object[]{"hendala road", "Regular", "Sun Nov 12 13:36:05 +0000 2014"});
         data.add(new Object[]{"mt lavinia", "Regular", "Sun Nov 10 13:36:05 +0000 2014"});
         data.add(new Object[]{"duplication rd", "Regular", "Sun Nov 02 13:36:05 +0000 2014"});
-
         final List<Object[]> expectedResult = new ArrayList<Object[]>();
         expectedResult.add(new Object[]{5.9461591d, 80.4978628d, "Gunasekara Mawatha, Matara, Sri Lanka"});
         expectedResult.add(new Object[]{6.9954258d, 79.88272810000001d, "Hendala Rd, Wattala, Sri Lanka"});
         expectedResult.add(new Object[]{6.8390463d, 79.8646835d, "Mount Lavinia, Sri Lanka"});
         expectedResult.add(new Object[]{6.918263d, 79.8495415d, "Sri Uttarananda Mawatha, Colombo, Sri Lanka"});
-
-
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
@@ -78,7 +73,6 @@ public class ${siddhi_stream_function_name}StreamFunctionProcessorTestCase {
                 }
             }
         });
-
         executionPlanRuntime.start();
         Thread.sleep(100);
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("geocodeStream");

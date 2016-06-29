@@ -24,7 +24,6 @@ import org.osgi.service.component.ComponentContext;
 import org.wso2.carbon.event.input.adapter.core.InputEventAdapterFactory;
 import ${package}.${carbon_analytics_receiver_name}EventAdapterFactory;
 
-
 /**
  * @scr.component component.name="input.${carbon_analytics_receiver_name}.AdapterService.component" immediate="true"
  */
@@ -39,17 +38,16 @@ public class ${carbon_analytics_receiver_name}EventAdapterServiceDS {
      * @param context
      */
     protected void activate(ComponentContext context) {
-
         try {
             InputEventAdapterFactory ${carbon_analytics_receiver_name.toLowerCase()}EventAdaptorFactory =
                     new ${carbon_analytics_receiver_name}EventAdapterFactory();
             context.getBundleContext().registerService(InputEventAdapterFactory.class.getName(),
                     ${carbon_analytics_receiver_name.toLowerCase()}EventAdaptorFactory, null);
             if (log.isDebugEnabled()) {
-                log.debug("Successfully deployed the input ${carbon_analytics_receiver_name} event service");
+                log.debug("Successfully deployed the input ${carbon_analytics_receiver_name} event service.");
             }
         } catch (RuntimeException e) {
-            log.error("Can not create  the input ${carbon_analytics_receiver_name} event service ", e);
+            log.error("Can not create  the input ${carbon_analytics_receiver_name} event service. ", e);
         }
     }
 }

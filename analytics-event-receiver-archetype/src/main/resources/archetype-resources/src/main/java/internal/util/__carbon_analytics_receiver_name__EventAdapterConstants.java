@@ -20,7 +20,9 @@ package ${package}.internal.util;
 
 public final class ${carbon_analytics_receiver_name}EventAdapterConstants {
 
-    private ${carbon_analytics_receiver_name}EventAdapterConstants() {
-    }
+    public static final String ADAPTER_TYPE_LOGGER = "${carbon_analytics_receiver_name}";
 
+    private ${carbon_analytics_receiver_name}EventAdapterConstants() {
+
+    }
 }
