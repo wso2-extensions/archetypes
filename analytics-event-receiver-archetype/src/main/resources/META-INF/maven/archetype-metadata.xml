@@ -40,12 +40,6 @@
                 <include>**/*.properties</include>
             </includes>
         </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>src/test/resources</directory>
-            <includes>
-                <include>**/*.properties</include>
-            </includes>
-        </fileSet>
     </fileSets>
     <requiredProperties>
         <requiredProperty key="carbon_analytics_receiver_name"/>
