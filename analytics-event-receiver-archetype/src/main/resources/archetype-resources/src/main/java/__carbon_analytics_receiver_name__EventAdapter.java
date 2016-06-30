@@ -35,9 +35,9 @@ public class ${carbon_analytics_receiver_name}EventAdapter implements InputEvent
     /**
      * This method checks whether the receiving server is available.
      *
-     * @throws org.wso2.carbon.event.input.adapter.core.exception.TestConnectionNotSupportedException.
-     * @throws InputEventAdapterRuntimeException.
-     * @throws org.wso2.carbon.event.input.adapter.core.exception.ConnectionUnavailableException.
+     * @throws org.wso2.carbon.event.input.adapter.core.exception.TestConnectionNotSupportedException
+     * @throws InputEventAdapterRuntimeException
+     * @throws org.wso2.carbon.event.input.adapter.core.exception.ConnectionUnavailableException
      */
     @Override
     public void testConnect() throws org.wso2.carbon.event.input.adapter.core.exception.TestConnectionNotSupportedException, InputEventAdapterRuntimeException, org.wso2.carbon.event.input.adapter.core.exception.ConnectionUnavailableException {
@@ -48,8 +48,8 @@ public class ${carbon_analytics_receiver_name}EventAdapter implements InputEvent
      * Intention is to connect to a receiving end
      * and if it is not available "ConnectionUnavailableException" will be thrown.
      *
-     * @throws InputEventAdapterRuntimeException.
-     * @throws org.wso2.carbon.event.input.adapter.core.exception.ConnectionUnavailableException.
+     * @throws InputEventAdapterRuntimeException
+     * @throws org.wso2.carbon.event.input.adapter.core.exception.ConnectionUnavailableException
      */
     @Override
     public void connect() throws InputEventAdapterRuntimeException, org.wso2.carbon.event.input.adapter.core.exception.ConnectionUnavailableException {

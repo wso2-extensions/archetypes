@@ -22,7 +22,8 @@ import org.wso2.carbon.event.output.adapter.core.OutputEventAdapter;
 import org.wso2.carbon.event.output.adapter.core.OutputEventAdapterConfiguration;
 import org.wso2.carbon.event.output.adapter.core.OutputEventAdapterFactory;
 import org.wso2.carbon.event.output.adapter.core.Property;
-import org.wso2.carbon.extension.analytics.internal.util.${carbon_analytics_publisher_name}EventAdapterConstants;
+import ${package}.internal.util.${carbon_analytics_publisher_name}EventAdapterConstants;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
