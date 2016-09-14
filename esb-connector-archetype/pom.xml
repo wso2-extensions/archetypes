@@ -23,7 +23,7 @@
         <artifactId>carbon-extension-archetype</artifactId>
         <version>2.0.2-SNAPSHOT</version>
     </parent>
-    <artifactId>org.wso2.carbon.extension.esb.connector-archetype</artifactId>
+    <artifactId>org.wso2.carbon.extension.archetype.esb.connector-archetype</artifactId>
     <version>2.0.2-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
     <name>WSO2 Carbon - Connector Archetype for Template</name>
