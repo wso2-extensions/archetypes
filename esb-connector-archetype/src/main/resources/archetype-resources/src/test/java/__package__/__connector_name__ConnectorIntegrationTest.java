@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * Sample integration test
  */
-public class ${connector_name}IntegrationTest extends ConnectorIntegrationTestBase {
+public class ${connector_name}ConnectorIntegrationTest extends ConnectorIntegrationTestBase {
 
     private Map<String, String> esbRequestHeadersMap = new HashMap<String, String>();
     private Map<String, String> apiRequestHeadersMap = new HashMap<String, String>();
