@@ -15,7 +15,7 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-package ${package};
+package org.wso2.carbon.connector;
 
 import org.apache.synapse.MessageContext;
 import org.wso2.carbon.connector.core.AbstractConnector;
