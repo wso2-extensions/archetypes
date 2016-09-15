@@ -9,7 +9,7 @@ STEPS:
     mvn archetype:generate
         -DarchetypeGroupId=org.wso2.carbon.extension.archetype
         -DarchetypeArtifactId=org.wso2.carbon.extension.archetype.is.authenticator-archetype
-        -DarchetypeVersion=2.0.0
+        -DarchetypeVersion=2.0.2-SNAPSHOT
         -DgroupId=org.wso2.carbon.extension.identity.authenticator
         -DartifactId=org.wso2.carbon.extension.identity.authenticator.<connector_name>
         -Dversion=1.0.0

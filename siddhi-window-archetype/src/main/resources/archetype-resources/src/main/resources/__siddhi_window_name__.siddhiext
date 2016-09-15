@@ -16,4 +16,4 @@
 # under the License.
 #
  
-${siddhi_window_name}Window=${package}.${siddhi_window_name}Window
+${siddhi_window_name}Window=${package}.${siddhi_window_name}WindowProcessor
