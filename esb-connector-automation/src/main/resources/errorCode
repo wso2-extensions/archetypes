@@ -1,0 +1,11 @@
+CAT001=Error while read the WSDL FILE
+CAT002=An error occurred while move the archetype resource file
+CAT003=An error occurred while create connector resource directory
+
+CAT101=Error while create SchemaReader from InputSource
+CAT102=Error while read the Schema from SchemaReader
+CAT103=An error has occurred while creating XML document
+
+CAT200=An error has occurred while saving the  XML document
+CAT201=Error occurred while create TransformerFactory instance
+CAT203=An error has occurred while generate pom xml
