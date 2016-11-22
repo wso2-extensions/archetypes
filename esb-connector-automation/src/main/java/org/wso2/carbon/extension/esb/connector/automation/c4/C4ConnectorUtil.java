@@ -17,24 +17,23 @@ package org.wso2.carbon.extension.esb.connector.automation.c4;
 
 import org.w3c.dom.Element;
 import org.wso2.carbon.extension.esb.connector.automation.util.AutomationConstants;
+import org.wso2.carbon.extension.esb.connector.automation.util.Property;
+import org.wso2.carbon.extension.esb.connector.automation.util.SoapConnectorDocumentBuilder;
+import org.wso2.carbon.extension.esb.connector.automation.wsdl.ConnectorException;
 import org.wso2.carbon.extension.esb.connector.automation.wsdl.OperationInfo;
-import org.wso2.carbon.extension.esb.connector.automation.util.*;
-import org.wso2.carbon.extension.esb.connector.automation.wsdl.SoapConnectorException;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
-public class GenerateC4Connector {
+public class C4ConnectorUtil {
 
     /**
      * @param operationInfo operation information
      * @param path          path to save methods
      * @param mimeType      The content type
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
     public void generateMethodXML(OperationInfo operationInfo,
-                                  String path, String mimeType)
-            throws SoapConnectorException {
+                                  String path, String mimeType) {
         // building XML file using this helper class
         SoapConnectorDocumentBuilder docBuilder = new SoapConnectorDocumentBuilder(operationInfo);
         docBuilder.buildMessageText();
@@ -91,10 +90,9 @@ public class GenerateC4Connector {
      * @param path
      * @param componentName
      * @param isInitExist
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
-    public void generateComponentXML(List component, String path, String componentName, Boolean isInitExist)
-            throws SoapConnectorException, IOException {
+    public void generateComponentXML(List component, String path, String componentName, Boolean isInitExist) {
         SoapConnectorDocumentBuilder docBuilder = new SoapConnectorDocumentBuilder();
         String attributes = AutomationConstants.NAME + "~" + componentName + ";"
                 + AutomationConstants.TYPE + "~" + AutomationConstants.TYPE_VALUE;
@@ -121,13 +119,12 @@ public class GenerateC4Connector {
     }
 
     /**
-     *
      * @param name
      * @param path
      * @param connector
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
-    public void generateConnectorXML(String name, String path, List connector) throws SoapConnectorException {
+    public void generateConnectorXML(String name, String path, List connector) {
         // building XML file
         SoapConnectorDocumentBuilder docBuilder = new SoapConnectorDocumentBuilder();
 

@@ -51,14 +51,28 @@ public class XMLSupport {
      * @return The castor schema created from the reader.
      * @throws IOException If the schema could not be read from the reader.
      */
-    public static Schema readSchema(Reader reader) throws IOException {
+    public static Schema readSchema(Reader reader) {
         // create the sax input source
         InputSource inputSource = new InputSource(reader);
         // create the schema reader
-        SchemaReader schemaReader = new SchemaReader(inputSource);
-        schemaReader.setValidation(false);
+        SchemaReader schemaReader = null;
+        try {
+            schemaReader = new SchemaReader(inputSource);
+        } catch (IOException e) {
+            ConnectorException.handleException("CAT101", e);
+        }
+        if (schemaReader != null) {
+            schemaReader.setValidation(false);
+        }
         // read the schema from the source
-        Schema schema = schemaReader.read();
+        Schema schema = null;
+        try {
+            if (schemaReader != null) {
+                schema = schemaReader.read();
+            }
+        } catch (IOException e) {
+            ConnectorException.handleException("CAT102", e);
+        }
         return schema;
     }
 
@@ -69,7 +83,7 @@ public class XMLSupport {
      * @return The castor schema corresponding to the element.
      * @throws IOException If the jdom element could not be written out.
      */
-    public static Schema convertElementToSchema(Element element) throws IOException {
+    public static Schema convertElementToSchema(Element element) {
         // get the string content of the element
         String content = outputString(element);
         // check for null value

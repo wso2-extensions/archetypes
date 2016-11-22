@@ -1,4 +1,3 @@
-package org.wso2.carbon.extension.esb.connector.automation;
 /*
 * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
@@ -15,8 +14,34 @@ package org.wso2.carbon.extension.esb.connector.automation;
 * limitations under the License.
 */
 
-import java.util.List;
+package org.wso2.carbon.extension.esb.connector.automation.wsdl;
 
-public interface Connector {
-    List readResource();
+/**
+ *
+ */
+public class ConnectorException extends Exception {
+
+    /**
+     * @param message
+     */
+    public ConnectorException(String message) {
+        super(message);
+    }
+
+    /**
+     * @param msg
+     * @param ex
+     */
+    public static void handleException(String msg, Exception ex) {
+        System.err.print("Error code: " + msg);
+        ex.printStackTrace();
+    }
+
+    /**
+     * @param msg
+     */
+    public static void handleException(String msg) {
+        new ConnectorException(msg);
+    }
 }
+

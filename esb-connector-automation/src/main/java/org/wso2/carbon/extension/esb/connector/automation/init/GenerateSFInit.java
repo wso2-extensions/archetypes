@@ -19,7 +19,7 @@ import org.w3c.dom.Element;
 import org.wso2.carbon.extension.esb.connector.automation.util.AutomationConstants;
 import org.wso2.carbon.extension.esb.connector.automation.util.Property;
 import org.wso2.carbon.extension.esb.connector.automation.util.SoapConnectorDocumentBuilder;
-import org.wso2.carbon.extension.esb.connector.automation.wsdl.SoapConnectorException;
+import org.wso2.carbon.extension.esb.connector.automation.wsdl.ConnectorException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +29,9 @@ public class GenerateSFInit implements Init {
     /**
      * @param path     path to the file
      * @param mimeType content type
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
-    public void generateInitXML(String path, String mimeType)
-            throws SoapConnectorException {
+    public void generateInitXML(String path, String mimeType) {
         // building XML file using this helper class
         SoapConnectorDocumentBuilder docBuilder = new SoapConnectorDocumentBuilder();
         Property username = new Property(AutomationConstants.USERNAME, " ", AutomationConstants.TYPE_STRING);

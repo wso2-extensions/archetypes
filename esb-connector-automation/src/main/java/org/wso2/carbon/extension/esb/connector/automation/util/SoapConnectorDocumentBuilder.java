@@ -23,7 +23,7 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.wso2.carbon.extension.esb.connector.automation.wsdl.OperationInfo;
-import org.wso2.carbon.extension.esb.connector.automation.wsdl.SoapConnectorException;
+import org.wso2.carbon.extension.esb.connector.automation.wsdl.ConnectorException;
 
 import javax.wsdl.Message;
 import javax.wsdl.Part;
@@ -58,9 +58,9 @@ public class SoapConnectorDocumentBuilder {
     private Set<String> basicTypes;
 
     /**
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
-    public SoapConnectorDocumentBuilder() throws SoapConnectorException {
+    public SoapConnectorDocumentBuilder() {
 
         docFactory = DocumentBuilderFactory.newInstance();
         basicTypes = new HashSet<String>();
@@ -74,14 +74,11 @@ public class SoapConnectorDocumentBuilder {
             docBuilder = docFactory.newDocumentBuilder();
             doc = docBuilder.newDocument();
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new SoapConnectorException(
-                    "An error has occurred while creating XML document Error Message: " +
-                            e.getMessage());
+            ConnectorException.handleException("CAT103", e);
         }
     }
 
-    public SoapConnectorDocumentBuilder(OperationInfo operationInfo) throws SoapConnectorException {
+    public SoapConnectorDocumentBuilder(OperationInfo operationInfo) {
         docFactory = DocumentBuilderFactory.newInstance();
         argCounter = new IntHolder();
         this.operationInfo = operationInfo;
@@ -97,10 +94,7 @@ public class SoapConnectorDocumentBuilder {
             docBuilder = docFactory.newDocumentBuilder();
             doc = docBuilder.newDocument();
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new SoapConnectorException(
-                    "An error has occurred while creating XML document Error Message: " +
-                            e.getMessage());
+            ConnectorException.handleException("CAT103", e);
         }
     }
 
@@ -187,16 +181,15 @@ public class SoapConnectorDocumentBuilder {
      * @param name
      * @param properties
      * @return
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
-    public Element createChild(String name, String properties, boolean includeNs)
-            throws SoapConnectorException {
+    public Element createChild(String name, String properties, boolean includeNs) {
         Element child = doc.createElement(name);
         if (includeNs) {
             child.setAttribute(AutomationConstants.NS_NAME, AutomationConstants.NS_VALUE);
         }
         if (properties == null || properties.isEmpty()) {
-            throw new SoapConnectorException("properties can't be null or empty");
+            ConnectorException.handleException("properties can't be null or empty");
         }
         Map<String, String> attributes = propertiesMap(properties);
         addAttributes(child, attributes);
@@ -209,12 +202,12 @@ public class SoapConnectorDocumentBuilder {
      * @param text
      * @param properties
      * @return
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
     public Element addChildTo(Element parent, String name, String text, String properties,
-                              boolean includeNs) throws SoapConnectorException {
+                              boolean includeNs) {
         if (parent == null) {
-            throw new SoapConnectorException("Root element doesn't exist in the XML document");
+            ConnectorException.handleException("Root element doesn't exist in the XML document");
         }
         Map<String, String> attributes = propertiesMap(properties);
         Element child = doc.createElement(name);
@@ -223,7 +216,9 @@ public class SoapConnectorDocumentBuilder {
         }
         addAttributes(child, attributes);
         child.appendChild(doc.createTextNode(text));
-        parent.appendChild(child);
+        if (parent != null) {
+            parent.appendChild(child);
+        }
         return child;
     }
 
@@ -232,19 +227,20 @@ public class SoapConnectorDocumentBuilder {
      * @param name
      * @param text
      * @return
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
-    public Element addChildTo(Element parent, String name, String text, boolean includeNs)
-            throws SoapConnectorException {
+    public Element addChildTo(Element parent, String name, String text, boolean includeNs) {
         if (parent == null) {
-            throw new SoapConnectorException("Root element doesn't exist in the XML document");
+            ConnectorException.handleException("Root element doesn't exist in the XML document");
         }
         Element child = doc.createElement(name);
         if (includeNs) {
             child.setAttribute(AutomationConstants.NS_NAME, AutomationConstants.NS_VALUE);
         }
         child.appendChild(doc.createTextNode(text));
-        parent.appendChild(child);
+        if (parent != null) {
+            parent.appendChild(child);
+        }
         return child;
     }
 
@@ -252,10 +248,9 @@ public class SoapConnectorDocumentBuilder {
      * @param parent
      * @param name
      * @return
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
-    public Element addChildTo(Element parent, String name, boolean includeNs)
-            throws SoapConnectorException {
+    public Element addChildTo(Element parent, String name, boolean includeNs) {
         return addChildTo(parent, name, "", includeNs);
     }
 
@@ -263,29 +258,31 @@ public class SoapConnectorDocumentBuilder {
      * Save this XMl document to the given location
      *
      * @param location
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
-    public void save(String location) throws SoapConnectorException {
+    public void save(String location) {
         if (location == null || location.isEmpty()) {
-            throw new SoapConnectorException("Document saving path can't be null or empty");
+            ConnectorException.handleException("Document saving path can't be null or empty");
         }
+        Transformer transformer = null;
         try {
-            Transformer transformer = TransformerFactory.newInstance().newTransformer();
-            // initialize pretty printer
-            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, AutomationConstants.NO);
-            transformer.setOutputProperty(OutputKeys.METHOD, AutomationConstants.XML);
-            transformer.setOutputProperty(OutputKeys.INDENT, AutomationConstants.INDENT_YES);
-            transformer.setOutputProperty(OutputKeys.ENCODING, AutomationConstants.ENCODING);
-            transformer.setOutputProperty(OutputKeys.MEDIA_TYPE, AutomationConstants.XML);
-            transformer.setOutputProperty(AutomationConstants.IA_NAME, AutomationConstants.IA_VALUE);
-            Result output = new StreamResult(new File(location));
-            Source input = new DOMSource(doc);
+            transformer = TransformerFactory.newInstance().newTransformer();
+        } catch (TransformerConfigurationException e) {
+            ConnectorException.handleException("CAT201", e);
+        }
+        // initialize pretty printer
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, AutomationConstants.NO);
+        transformer.setOutputProperty(OutputKeys.METHOD, AutomationConstants.XML);
+        transformer.setOutputProperty(OutputKeys.INDENT, AutomationConstants.INDENT_YES);
+        transformer.setOutputProperty(OutputKeys.ENCODING, AutomationConstants.ENCODING);
+        transformer.setOutputProperty(OutputKeys.MEDIA_TYPE, AutomationConstants.XML);
+        transformer.setOutputProperty(AutomationConstants.IA_NAME, AutomationConstants.IA_VALUE);
+        Result output = new StreamResult(new File(location));
+        Source input = new DOMSource(doc);
+        try {
             transformer.transform(input, output);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new SoapConnectorException(
-                    "An error has occurred while saving the  XML document Error Message: " +
-                            e.getMessage());
+        } catch (TransformerException e) {
+            ConnectorException.handleException("CAT200", e);
         }
     }
     // Listing some private helper methods
@@ -400,7 +397,9 @@ public class SoapConnectorDocumentBuilder {
                         buildComplexPart((ComplexType) xmlType, childElem);
                     } else {
                         childElem.setTextContent("$" + (val));
-                        operationInfo.setParameters(new Property(elementDecl.getName(), " ", xmlType.getName()));
+                        if (xmlType != null) {
+                            operationInfo.setParameters(new Property(elementDecl.getName(), " ", xmlType.getName()));
+                        }
                     }
                     partElem.appendChild(childElem);
                 }
@@ -444,11 +443,10 @@ public class SoapConnectorDocumentBuilder {
      * @param parent
      * @param parameters
      * @param docBuilder
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
     public void buildSynapseParameters(Element parent, List<Property> parameters,
-                                       SoapConnectorDocumentBuilder docBuilder)
-            throws SoapConnectorException {
+                                       SoapConnectorDocumentBuilder docBuilder) {
         for (Property parameter : parameters) {
             String prop = AutomationConstants.NAME + "~" + parameter.getName() + ";" + AutomationConstants.DESCRIPTION + "~" + parameter.getDescription();
             docBuilder.addChildTo(parent, AutomationConstants.PARAMETER, "", prop, true);
@@ -460,11 +458,10 @@ public class SoapConnectorDocumentBuilder {
      * @param docBuilder
      * @param type
      * @return
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
     public Element builSoapPayload(List<Property> parameters,
-                                   SoapConnectorDocumentBuilder docBuilder, String type)
-            throws SoapConnectorException {
+                                   SoapConnectorDocumentBuilder docBuilder, String type) {
         boolean haveBodayTypeParameters = !parameters.isEmpty();
         List<Element> args = new ArrayList<Element>();
         if (haveBodayTypeParameters) {
@@ -493,11 +490,10 @@ public class SoapConnectorDocumentBuilder {
      * @param parameter
      * @param docBuilder
      * @return
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
     private List<Element> buildArguments(Property parameter,
-                                         SoapConnectorDocumentBuilder docBuilder)
-            throws SoapConnectorException {
+                                         SoapConnectorDocumentBuilder docBuilder) {
         List<Element> args = new ArrayList<Element>();
         String props;
         if (parameter.getParameterLocation() == ParamLocation.BODY) {

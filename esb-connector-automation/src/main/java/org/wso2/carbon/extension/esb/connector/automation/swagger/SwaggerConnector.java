@@ -14,14 +14,19 @@ package org.wso2.carbon.extension.esb.connector.automation.swagger;/*
 * limitations under the License.
 */
 
-import org.wso2.carbon.extension.esb.connector.automation.Connector;
+import org.wso2.carbon.extension.esb.connector.automation.ConnectorInput;
 
 import java.util.List;
 
-public class SwaggerConnector implements Connector {
+public class SwaggerConnector implements ConnectorInput {
     @Override
     public List readResource() {
         //TODO
+        return null;
+    }
+
+    @Override
+    public String AuthenticationMethod() {
         return null;
     }
 

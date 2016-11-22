@@ -18,6 +18,7 @@ package org.wso2.carbon.extension.esb.connector.automation;
 import org.wso2.carbon.extension.esb.connector.automation.c4.C4Connector;
 import org.wso2.carbon.extension.esb.connector.automation.util.AutomationConstants;
 import org.wso2.carbon.extension.esb.connector.automation.util.GenerateConnectorSourceCode;
+import org.wso2.carbon.extension.esb.connector.automation.wsdl.ConnectorException;
 import org.wso2.carbon.extension.esb.connector.automation.wsdl.GenerateWSDLConnector;
 
 import java.util.Scanner;
@@ -30,44 +31,20 @@ public class GenerateConnector {
 
     public static void main(String[] args) {
         int outputType;
-        Connector connector;
+        ConnectorInput connectorInput;
         GenerateConnectorSourceCode generateConnectorSourceCode;
         System.out.println(AutomationConstants.WELCOME_MESSAGE);
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please select your preference \n 1) WSDL to C4 \n 2) Swagger to C4");
+        System.out.println("Please select your preference \n 1) WSDL to C4 \n 2) Swagger to C4 (Not Support)");
         outputType = scanner.nextInt();
         if (outputType == 1) {
-            connector = new GenerateWSDLConnector(outputType);
-            generateConnectorSourceCode=new C4Connector(connector.readResource(),AuthenticationMethod());
+            connectorInput = new GenerateWSDLConnector(outputType);
+            generateConnectorSourceCode=new C4Connector(connectorInput.readResource(),connectorInput.AuthenticationMethod());
             generateConnectorSourceCode.generateConnector();
         } else if (outputType == 2) {
-            System.err.println("current implementation not supported to swagger");
-            System.exit(0);
+            ConnectorException.handleException("current implementation not supported to swagger");
         } else {
-            System.err.println("please select the number from the list");
-            System.exit(0);
+            ConnectorException.handleException("please select the number from the list");
         }
-    }
-
-    /**
-     *
-     * @return authentication method name
-     */
-    public static String AuthenticationMethod(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter select service provider name and type the number");
-        System.out.println("1.Salesforce \n2.No authentication");
-        String authenticationMethod = null;
-        int authentication = scanner.nextInt();
-        if (authentication == 1) {
-            authenticationMethod = AutomationConstants.SALESFORCE;
-        } else if (authentication == 2) {
-            authenticationMethod = "";
-            System.out.println("Running without extra Authentication method");
-        } else {
-            System.err.println("Please select the number from the list");
-            System.exit(0);
-        }
-        return authenticationMethod;
     }
 }

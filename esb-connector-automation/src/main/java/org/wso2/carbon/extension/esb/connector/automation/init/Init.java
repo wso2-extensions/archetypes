@@ -14,14 +14,14 @@ package org.wso2.carbon.extension.esb.connector.automation.init;/*
 * limitations under the License.
 */
 
-import org.wso2.carbon.extension.esb.connector.automation.wsdl.SoapConnectorException;
+import org.wso2.carbon.extension.esb.connector.automation.wsdl.ConnectorException;
 
 public interface Init {
 
     /**
      * @param path     path to save the file
      * @param mimeType message type
-     * @throws SoapConnectorException
+     * @throws ConnectorException
      */
-    void generateInitXML(String path, String mimeType) throws SoapConnectorException;
+    void generateInitXML(String path, String mimeType);
 }

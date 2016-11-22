@@ -33,6 +33,8 @@ public class AutomationConstants {
     public static final String URN_PASSWORD = "urn:password";
     public static final String CONNECTOR_NAME = "connector.name";
     public static final String ARTIFACT_ID = "artifactId";
+    public static final String ESB_VERSION = "esb.version";
+    public static final String ESB_VERSION_VALUE = "5.0.0";
     public static final String DEPENDENCY = "dependency";
     public static final String DESCRIPTION = "description";
     public static final String TEMPLATE = "template";

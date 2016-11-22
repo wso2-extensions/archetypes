@@ -68,7 +68,7 @@ public class ComponentBuilder {
             wsdlFactory = WSDLFactory.newInstance();
             simpleTypesFactory = new SimpleTypesFactory();
         } catch (Throwable t) {
-            System.err.println(t.getMessage());
+            ConnectorException.handleException(t.getMessage());
         }
     }
 
@@ -81,10 +81,8 @@ public class ComponentBuilder {
      */
     private static ExtensibilityElement findExtensibilityElement(List extensibilityElements, String elementType) {
         if (extensibilityElements != null) {
-
             for (Object extensibilityElement : extensibilityElements) {
                 ExtensibilityElement element = (ExtensibilityElement) extensibilityElement;
-
                 if (element.getElementType().getLocalPart().equalsIgnoreCase(elementType)) {
                     // Found it
                     return element;
@@ -101,7 +99,7 @@ public class ComponentBuilder {
      * @return A List of SoapComponent objects populated for each service defined
      * in a WSDL document. A null is returned if the document can't be read.
      */
-    public List buildComponents(String wsdlURI) throws Exception {
+    public List buildComponents(String wsdlURI) {
         // The list of components that will be returned
         List serviceList = Collections.synchronizedList(new ArrayList());
 
@@ -109,14 +107,22 @@ public class ComponentBuilder {
         WSDLReader reader = wsdlFactory.newWSDLReader();
 
         // Read the WSDL and get the top-level Definition object
-        Definition wsdlDefinition = reader.readWSDL(null, wsdlURI);
+        Definition wsdlDefinition = null;
+        try {
+            wsdlDefinition = reader.readWSDL(null, wsdlURI);
+        } catch (WSDLException e) {
+            ConnectorException.handleException("CAT001", e);
+        }
 
         // Create a castor schema from the types element defined in WSDL
         // This method will return null if there are types defined in the WSDL
         wsdlTypes = createSchemaFromTypes(wsdlDefinition);
 
         // Get the services defined in the document
-        Map services = wsdlDefinition.getServices();
+        Map services = null;
+        if (wsdlDefinition != null) {
+            services = wsdlDefinition.getServices();
+        }
 
         if (services != null) {
             // Create a component for each service defined
@@ -151,7 +157,6 @@ public class ComponentBuilder {
 
         if (wsdlDefinition.getTypes() != null) {
             ExtensibilityElement schemaExtElem = findExtensibilityElement(wsdlDefinition.getTypes().getExtensibilityElements(), "schema");
-
             if (schemaExtElem != null && schemaExtElem instanceof UnknownExtensibilityElement) {
                 schemaElement = ((UnknownExtensibilityElement) schemaExtElem).getElement();
             }
@@ -192,14 +197,8 @@ public class ComponentBuilder {
         jdomSchemaElement.detach();
 
         // Convert it into a Castor schema instance
-        Schema schema = null;
-
-        try {
-            schema = XMLSupport.convertElementToSchema(jdomSchemaElement);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-
+        Schema schema;
+        schema = XMLSupport.convertElementToSchema(jdomSchemaElement);
         // Return it
         return schema;
     }

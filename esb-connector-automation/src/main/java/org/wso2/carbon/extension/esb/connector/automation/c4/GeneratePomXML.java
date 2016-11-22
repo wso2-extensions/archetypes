@@ -1,4 +1,4 @@
-package org.wso2.carbon.extension.esb.connector.automation;
+package org.wso2.carbon.extension.esb.connector.automation.c4;
 /*
 * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
@@ -17,6 +17,7 @@ package org.wso2.carbon.extension.esb.connector.automation;
 
 import org.w3c.dom.Document;
 import org.wso2.carbon.extension.esb.connector.automation.util.AutomationConstants;
+import org.wso2.carbon.extension.esb.connector.automation.wsdl.ConnectorException;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -34,9 +35,8 @@ import java.io.IOException;
 public class GeneratePomXML {
 
     /**
-     *
      * @param connectorName Name of the connector
-     * @param path Path to pom file
+     * @param path          Path to pom file
      */
     public static void generatePomXml(String connectorName, String path) {
         String filePath = path + "/" + AutomationConstants.POM_XML;
@@ -53,6 +53,8 @@ public class GeneratePomXML {
                     .setNodeValue(connectorName);
             doc.getElementsByTagName(AutomationConstants.NAME).item(0).getFirstChild()
                     .setNodeValue("WSO2 Carbon - Connector For " + connectorName);
+            doc.getElementsByTagName(AutomationConstants.ESB_VERSION).item(0).getFirstChild()
+                    .setNodeValue(AutomationConstants.ESB_VERSION_VALUE);
             //write the updated document to file or console
             doc.getDocumentElement().normalize();
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -62,7 +64,7 @@ public class GeneratePomXML {
             transformer.setOutputProperty(OutputKeys.INDENT, AutomationConstants.INDENT_YES);
             transformer.transform(source, result);
         } catch (SAXException | ParserConfigurationException | IOException | TransformerException e) {
-            e.printStackTrace();
+            ConnectorException.handleException("CAT203", e);
         }
     }
 }

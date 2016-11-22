@@ -1,3 +1,4 @@
+package org.wso2.carbon.extension.esb.connector.automation;
 /*
 * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
@@ -14,14 +15,10 @@
 * limitations under the License.
 */
 
-package org.wso2.carbon.extension.esb.connector.automation.wsdl;
+import java.util.List;
 
-/**
- *
- */
-public class SoapConnectorException extends Exception {
+public interface ConnectorInput {
+    List readResource();
 
-    public SoapConnectorException(String message) {
-        super(message);
-    }
+    String AuthenticationMethod();
 }

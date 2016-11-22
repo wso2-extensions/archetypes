@@ -15,15 +15,16 @@ package org.wso2.carbon.extension.esb.connector.automation.c4;/*
 */
 
 import org.apache.commons.io.FileUtils;
-import org.wso2.carbon.extension.esb.connector.automation.GeneratePomXML;
 import org.wso2.carbon.extension.esb.connector.automation.init.GenerateSFInit;
 import org.wso2.carbon.extension.esb.connector.automation.init.Init;
 import org.wso2.carbon.extension.esb.connector.automation.util.AutomationConstants;
 import org.wso2.carbon.extension.esb.connector.automation.util.GenerateConnectorSourceCode;
+import org.wso2.carbon.extension.esb.connector.automation.wsdl.ConnectorException;
 import org.wso2.carbon.extension.esb.connector.automation.wsdl.OperationInfo;
 import org.wso2.carbon.extension.esb.connector.automation.wsdl.ServiceInfo;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -49,15 +50,18 @@ public class C4Connector implements GenerateConnectorSourceCode{
      *
      */
     public void generateConnector() {
-        GenerateC4Connector generateC4Connector = new GenerateC4Connector();
-        try {
+        C4ConnectorUtil c4ConnectorUtil = new C4ConnectorUtil();
             File srcDir = new File(String.valueOf(AutomationConstants.ARCHETYPE_RESOURCE_PATH));
             String connectorName = components.get(0).toString();
             String destination = "./" + connectorName;
             File destDir = new File(destination);
+        try {
             FileUtils.copyDirectory(srcDir, destDir);
-            String connectorXMLPath = destination + AutomationConstants.RESOURCE_PATH;
-            generateC4Connector.generateConnectorXML(connectorName, connectorXMLPath, components);
+        } catch (IOException e) {
+            ConnectorException.handleException("CAT002", e);
+        }
+        String connectorXMLPath = destination + AutomationConstants.RESOURCE_PATH;
+            c4ConnectorUtil.generateConnectorXML(connectorName, connectorXMLPath, components);
             Iterator component = components.iterator();
             GeneratePomXML.generatePomXml(connectorName, destination);
             while (component.hasNext()) {
@@ -66,20 +70,21 @@ public class C4Connector implements GenerateConnectorSourceCode{
                 String componentPath = connectorXMLPath + connectorName;
                 new File(connectorName).mkdir();
                 File compDir = new File(componentPath);
-                FileUtils.forceMkdir(compDir);
+                try {
+                    FileUtils.forceMkdir(compDir);
+                } catch (IOException e) {
+                    ConnectorException.handleException("CAT003",e);
+                }
                 if (authenticationMethod.equals(AutomationConstants.SALESFORCE)) {
                     isInitExist = true;
                     init = new GenerateSFInit();
                     init.generateInitXML(componentPath, mimeType);
                 }
-                generateC4Connector.generateComponentXML(serviceInfo.operations, componentPath, connectorName, isInitExist);
+                c4ConnectorUtil.generateComponentXML(serviceInfo.operations, componentPath, connectorName, isInitExist);
                 while (operations.hasNext()) {
                     OperationInfo operationInfo = (OperationInfo) operations.next();
-                    generateC4Connector.generateMethodXML(operationInfo, componentPath, mimeType);
+                    c4ConnectorUtil.generateMethodXML(operationInfo, componentPath, mimeType);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
