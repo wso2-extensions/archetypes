@@ -1,0 +1,77 @@
+<archetype-descriptor>
+    <requiredProperties>
+        <requiredProperty key="storeType">
+        </requiredProperty>
+        <requiredProperty key="artifactId">
+            <defaultValue>
+                siddhi-store-${storeType}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="className">
+            <defaultValue>
+                ${storeType.substring(0,1).toUpperCase()}${storeType.substring(1)}EventTable
+            </defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+    <fileSets>
+        <fileSet filtered="true" >
+            <directory></directory>
+            <includes>
+                <include>pom.xml</include>
+                <include>**/*.yml</include>
+                <include>**/*.md</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.png</include>
+                <include>**/*.svg</include>
+                <include>**/*.ico</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.js</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.css</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component</directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>component/src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>component/src/test/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component/src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component/src/test/resources</directory>
+            <includes>
+                <include>**/*.xml</include>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>

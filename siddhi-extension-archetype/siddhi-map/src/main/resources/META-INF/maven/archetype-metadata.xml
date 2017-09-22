@@ -1,0 +1,94 @@
+<archetype-descriptor>
+    <requiredProperties>
+        <requiredProperty key="mapType">
+        </requiredProperty>
+        <requiredProperty key="artifactId">
+            <defaultValue>
+                siddhi-map-${mapType}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfSinkMapper">
+            <defaultValue>
+                ${mapType.substring(0,1).toUpperCase()}${mapType.substring(1)}SinkMapper
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfSourceMapper">
+            <defaultValue>
+                ${mapType.substring(0,1).toUpperCase()}${mapType.substring(1)}SourceMapper
+            </defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+    <fileSets>
+        <fileSet filtered="true" >
+            <directory></directory>
+            <includes>
+                <include>pom.xml</include>
+                <include>**/*.yml</include>
+                <include>**/*.md</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.png</include>
+                <include>**/*.svg</include>
+                <include>**/*.ico</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.js</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.css</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component</directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>component/src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>component/src/test/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>component/src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component/src/main/resources</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component/src/test/resources</directory>
+            <includes>
+                <include>**/*.xml</include>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>

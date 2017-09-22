@@ -1,0 +1,88 @@
+<archetype-descriptor>
+    <requiredProperties>
+        <requiredProperty key="typeOf_IO">
+        </requiredProperty>
+        <requiredProperty key="artifactId">
+            <defaultValue>
+                siddhi-io-${typeOf_IO}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfSink">
+            <defaultValue>
+                ${typeOf_IO.substring(0,1).toUpperCase()}${typeOf_IO.substring(1)}Sink
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfSource">
+            <defaultValue>
+                    ${typeOf_IO.substring(0,1).toUpperCase()}${typeOf_IO.substring(1)}Source
+            </defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+    <fileSets>
+        <fileSet filtered="true" >
+            <directory></directory>
+            <includes>
+                <include>pom.xml</include>
+                <include>**/*.yml</include>
+                <include>**/*.md</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.png</include>
+                <include>**/*.svg</include>
+                <include>**/*.ico</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.js</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.css</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component</directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>component/src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>component/src/test/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>component/src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component/src/test/resources</directory>
+            <includes>
+                <include>**/*.xml</include>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>

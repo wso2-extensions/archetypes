@@ -1,0 +1,103 @@
+<archetype-descriptor>
+    <requiredProperties>
+        <requiredProperty key="executionType">
+        </requiredProperty>
+        <requiredProperty key="artifactId">
+            <defaultValue>
+                siddhi-execution-${executionType}
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfAggregateFunction">
+            <defaultValue>
+                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}AggregateFunction
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfFunction">
+            <defaultValue>
+                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}Function
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfStreamFunction">
+            <defaultValue>
+                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}StreamFunction
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfStreamProcessor">
+            <defaultValue>
+                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}StreamProcessor
+            </defaultValue>
+        </requiredProperty>
+        <requiredProperty key="classNameOfWindow">
+            <defaultValue>
+                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}Window
+            </defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+    <fileSets>
+        <fileSet filtered="true" >
+            <directory></directory>
+            <includes>
+                <include>pom.xml</include>
+                <include>**/*.yml</include>
+                <include>**/*.md</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.png</include>
+                <include>**/*.svg</include>
+                <include>**/*.ico</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.js</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory></directory>
+            <includes>
+                <include>**/*.css</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component</directory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>component/src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>component/src/test/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>component/src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>component/src/test/resources</directory>
+            <includes>
+                <include>**/*.xml</include>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>
