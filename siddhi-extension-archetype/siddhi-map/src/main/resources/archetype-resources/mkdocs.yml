@@ -1,4 +1,4 @@
-site_name: Siddhi-IO-
+site_name: Siddhi-Map-${mapTypeInCamelCase}
 extra_css:
 - stylesheets/extra.css
 extra_javascript:
@@ -10,7 +10,7 @@ extra:
     primary: teal
     accent: teal
 pages:
-- Welcome to WSO2 Siddhi IO File: index.md
+- Welcome to WSO2 Siddhi Map ${mapTypeInCamelCase}: index.md
 - API Docs:
 - License: about/license.md
 theme: material

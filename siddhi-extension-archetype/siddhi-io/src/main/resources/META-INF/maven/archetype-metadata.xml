@@ -23,14 +23,19 @@
                 siddhi-io-${typeOf_IO}
             </defaultValue>
         </requiredProperty>
+        <requiredProperty key="typeOf_IOinCamelCase">
+            <defaultValue>
+                ${typeOf_IO.substring(0,1).toUpperCase()}${typeOf_IO.substring(1)}
+            </defaultValue>
+        </requiredProperty>
         <requiredProperty key="classNameOfSink">
             <defaultValue>
-                ${typeOf_IO.substring(0,1).toUpperCase()}${typeOf_IO.substring(1)}Sink
+                ${typeOf_IOinCamelCase}Sink
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfSource">
             <defaultValue>
-                    ${typeOf_IO.substring(0,1).toUpperCase()}${typeOf_IO.substring(1)}Source
+                    ${typeOf_IOinCamelCase}Source
             </defaultValue>
         </requiredProperty>
     </requiredProperties>

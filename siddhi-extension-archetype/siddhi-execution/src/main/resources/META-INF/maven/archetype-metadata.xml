@@ -23,29 +23,34 @@
                 siddhi-execution-${executionType}
             </defaultValue>
         </requiredProperty>
+        <requiredProperty key="executionTypeinCamelCase">
+            <defaultValue>
+                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}
+            </defaultValue>
+        </requiredProperty>
         <requiredProperty key="classNameOfAggregateFunction">
             <defaultValue>
-                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}AggregateFunction
+                ${executionTypeinCamelCase}AggregateFunction
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfFunction">
             <defaultValue>
-                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}Function
+                ${executionTypeinCamelCase}Function
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfStreamFunction">
             <defaultValue>
-                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}StreamFunction
+                ${executionTypeinCamelCase}StreamFunction
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfStreamProcessor">
             <defaultValue>
-                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}StreamProcessor
+                ${executionTypeinCamelCase}StreamProcessor
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfWindow">
             <defaultValue>
-                ${executionType.substring(0,1).toUpperCase()}${executionType.substring(1)}Window
+                ${executionTypeinCamelCase}Window
             </defaultValue>
         </requiredProperty>
     </requiredProperties>

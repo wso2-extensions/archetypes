@@ -23,14 +23,19 @@
                 siddhi-map-${mapType}
             </defaultValue>
         </requiredProperty>
+        <requiredProperty key="mapTypeInCamelCase">
+            <defaultValue>
+                ${mapType.substring(0,1).toUpperCase()}${mapType.substring(1)}
+            </defaultValue>
+        </requiredProperty>
         <requiredProperty key="classNameOfSinkMapper">
             <defaultValue>
-                ${mapType.substring(0,1).toUpperCase()}${mapType.substring(1)}SinkMapper
+                ${mapTypeInCamelCase}SinkMapper
             </defaultValue>
         </requiredProperty>
         <requiredProperty key="classNameOfSourceMapper">
             <defaultValue>
-                ${mapType.substring(0,1).toUpperCase()}${mapType.substring(1)}SourceMapper
+                ${mapTypeInCamelCase}SourceMapper
             </defaultValue>
         </requiredProperty>
     </requiredProperties>
