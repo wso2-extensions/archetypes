@@ -15,7 +15,7 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-package org.wso2.carbon.connector;
+package org.wso2.carbon.connector.integration.test;
 
 import org.json.JSONObject;
 import org.testng.annotations.BeforeClass;
@@ -36,7 +36,11 @@ public class ${connector_name}ConnectorIntegrationTest extends ConnectorIntegrat
 
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
-        init("${connector_name}-connector-1.0.0");
+
+        String connectorName = System.getProperty("connector_name") + "-connector-" +
+        System.getProperty("connector_version") + ".zip";
+        init(connectorName);
+
         esbRequestHeadersMap.put("Accept-Charset", "UTF-8");
         esbRequestHeadersMap.put("Content-Type", "application/json");
     }

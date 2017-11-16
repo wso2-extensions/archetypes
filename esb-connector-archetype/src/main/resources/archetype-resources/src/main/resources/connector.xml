@@ -17,10 +17,10 @@
    under the License.
 -->
 <connector>
-    <component name="Sample" package="org.wso2.carbon.connector" >
+    <component name="${connector_name}" package="org.wso2.carbon.connector" >
         <dependency component="config" />
         <dependency component="sample" />
-        <description>wso2 sample connector library</description>
+        <description>WSO2 ${connector_name} connector library</description>
     </component>
-    <icon>icon/icon.png</icon>
+    <icon>icon/icon-small.gif</icon>
 </connector>
