@@ -1,5 +1,5 @@
 /*
-*  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*  Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 *
 *  WSO2 Inc. licenses this file to you under the Apache License,
 *  Version 2.0 (the "License"); you may not use this file except
@@ -15,7 +15,7 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-package org.wso2.carbon.connector;
+package org.wso2.carbon.connector.integration.test.${connector_name};
 
 import org.json.JSONObject;
 import org.testng.annotations.BeforeClass;
@@ -31,20 +31,24 @@ import java.util.Map;
  */
 public class ${connector_name}ConnectorIntegrationTest extends ConnectorIntegrationTestBase {
 
-    private Map<String, String> esbRequestHeadersMap = new HashMap<String, String>();
+    private Map<String, String> eiRequestHeadersMap = new HashMap<String, String>();
     private Map<String, String> apiRequestHeadersMap = new HashMap<String, String>();
 
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
-        init("${connector_name}-connector-1.0.0");
-        esbRequestHeadersMap.put("Accept-Charset", "UTF-8");
-        esbRequestHeadersMap.put("Content-Type", "application/json");
+
+        String connectorName = System.getProperty("connector_name") + "-connector-" +
+        System.getProperty("connector_version") + ".zip";
+        init(connectorName);
+
+        eiRequestHeadersMap.put("Accept-Charset", "UTF-8");
+        eiRequestHeadersMap.put("Content-Type", "application/json");
     }
 
-    @Test(enabled = true, groups = {"wso2.esb"}, description = "${connector_name} test case")
+    @Test(enabled = true, groups = {"wso2.ei"}, description = "${connector_name} test case")
     public void testSample() throws Exception {
         log.info("Successfully tested");
-        RestResponse<JSONObject> esbRestResponse =
-                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "sampleRequest.json");
+        RestResponse<JSONObject> eiRestResponse =
+                sendJsonRestRequest(proxyUrl, "POST", eiRequestHeadersMap, "sampleRequest.json");
     }
 }
