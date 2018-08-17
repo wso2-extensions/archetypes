@@ -33,7 +33,7 @@ public class C4ConnectorUtil {
      * @throws ConnectorException
      */
     public void generateMethodXML(OperationInfo operationInfo,
-                                  String path, String mimeType) {
+                                  String path, String mimeType) throws ConnectorException {
         // building XML file using this helper class
         SoapConnectorDocumentBuilder docBuilder = new SoapConnectorDocumentBuilder(operationInfo);
         docBuilder.buildMessageText();

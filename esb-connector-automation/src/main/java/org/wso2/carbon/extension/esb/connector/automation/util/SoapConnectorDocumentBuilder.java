@@ -319,7 +319,7 @@ public class SoapConnectorDocumentBuilder {
      * Builds and adds parameters to the supplied info object
      * given a SOAP Message definition (from WSDL)
      **/
-    public Element buildMessageText() {
+    public Element buildMessageText() throws ConnectorException {
         Message msg = operationInfo.getInMsg();
         if (msg != null) {
             // Set the name of the operation's input message
@@ -345,7 +345,7 @@ public class SoapConnectorDocumentBuilder {
                 if (xmlType != null && xmlType.isComplexType()) {
                     // Build the message structure
                     buildComplexPart((ComplexType) xmlType, rootEl);
-                } else {
+                } else  if (part.getTypeName() != null){
                     // Build the element that will be added to the message
                     Element partElem = doc.createElement(partName);
                     // Add some default content as just a place holder
@@ -360,6 +360,9 @@ public class SoapConnectorDocumentBuilder {
                     }
                     // Add this message part
                     rootEl.appendChild(partElem);
+                }  else {
+                    throw new ConnectorException("Invalid WSDL found, element type of part cannot be detected as "
+                            + "complex or simple");
                 }
             }
         }
@@ -430,6 +433,21 @@ public class SoapConnectorDocumentBuilder {
             if (elemDecl != null) {
                 // From the element declaration get the XML type
                 xmlType = elemDecl.getType();
+            } else {
+                // When element schema is defined outside the wsdl file.
+                Collection<Schema> schemas = wsdlTypes.getImportedSchema();
+                Iterator<Schema> schemaIterator = schemas.iterator();
+                boolean found = false;
+
+                while (schemaIterator.hasNext() && !found) {
+                    Schema importedSchema = schemaIterator.next();
+                    ElementDecl elementDecl = importedSchema.getElementDecl(elemName);
+
+                    if (elementDecl != null) {
+                        xmlType = elementDecl.getType();
+                        found = true;
+                    }
+                }
             }
         }
         return xmlType;
