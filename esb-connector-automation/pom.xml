@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.wso2.carbon.extension.esb.connector</groupId>
     <artifactId>org.wso2.carbon.extension.esb.connector.automation</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>axis</groupId>
@@ -89,9 +89,36 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>extract-docs-from-components</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <property name="tempdir" value="target/wso2-connector-automation-tool-${project.version}" />
+                                <mkdir dir="${tempdir}" />
+                                <copy todir="${tempdir}/" overwrite="true">
+                                    <fileset dir="target/classes/" includes="archetype-*/**" />
+                                    <fileset dir="target/" includes="org.wso2.carbon.extension.*" />
+                                </copy>
+                                <zip destfile="target/wso2-connector-automation-tool-${project.version}.zip" basedir="${tempdir}"
+                                     update="true"/>
+                                <delete dir="${tempdir}"/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

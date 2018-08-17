@@ -49,7 +49,7 @@ public class C4Connector implements GenerateConnectorSourceCode{
     /**
      *
      */
-    public void generateConnector() {
+    public void generateConnector() throws ConnectorException {
         C4ConnectorUtil c4ConnectorUtil = new C4ConnectorUtil();
             File srcDir = new File(String.valueOf(AutomationConstants.ARCHETYPE_RESOURCE_PATH));
             String connectorName = components.get(0).toString();

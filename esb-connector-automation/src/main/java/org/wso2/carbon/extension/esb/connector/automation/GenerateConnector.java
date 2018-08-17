@@ -40,7 +40,11 @@ public class GenerateConnector {
         if (outputType == 1) {
             connectorInput = new GenerateWSDLConnector(outputType);
             generateConnectorSourceCode=new C4Connector(connectorInput.readResource(),connectorInput.AuthenticationMethod());
-            generateConnectorSourceCode.generateConnector();
+            try {
+                generateConnectorSourceCode.generateConnector();
+            } catch (ConnectorException e) {
+                ConnectorException.handleException("Cannot proceed with execution", e);
+            }
         } else if (outputType == 2) {
             ConnectorException.handleException("current implementation not supported to swagger");
         } else {

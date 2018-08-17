@@ -14,6 +14,8 @@ package org.wso2.carbon.extension.esb.connector.automation.util;/*
 * limitations under the License.
 */
 
+import org.wso2.carbon.extension.esb.connector.automation.wsdl.ConnectorException;
+
 public interface GenerateConnectorSourceCode {
-    void generateConnector();
+    void generateConnector() throws ConnectorException;
 }
