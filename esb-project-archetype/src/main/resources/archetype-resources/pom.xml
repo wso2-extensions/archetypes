@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ~ Copyright (c) 2016 WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ ~ Copyright (c) 2019 WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  ~
  ~ Licensed under the Apache License, Version 2.0 (the "License");
  ~ you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
-    <name>WSO2 EI - Synapse ESB project for integration solutions</name>
+    <name>WSO2 EI - ESB Project</name>
 
     <repositories>
         <repository>
