@@ -1,0 +1,19 @@
+Product: Template for WSO2 ESB PROJECT
+
+STEPS:
+
+ 1. Navigate to "<archetypes>/esb-project-archetype" and run the following command
+         mvn clean install
+
+ 2. Run the following command to create the esb synapse project
+    mvn archetype:generate
+        -DarchetypeGroupId=org.wso2.carbon.extension.archetype
+        -DarchetypeArtifactId=org.wso2.carbon.extension.esb.project-archetype
+        -DarchetypeVersion=2.0.7-SNAPSHOT
+        -DgroupId=org.wso2.carbon.esb-synapse-project
+        -DartifactId=org.wso2.carbon.esb.<project_name>
+        -Dversion=1.0.0
+
+    Please enter the <project_name> in lower camel case in above DartifactId from command line
+    eg :- org.wso2.carbon.esb.sample
+

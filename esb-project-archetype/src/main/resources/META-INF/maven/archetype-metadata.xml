@@ -1,0 +1,51 @@
+<archetype-descriptor
+    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+    name="org.wso2.carbon.esb.synapse.project">
+
+    <fileSets>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/synapse-config/api</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/synapse-config/endpoints</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/synapse-config/inbound-endpoints</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/synapse-config/local-entries</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/synapse-config/message-processors</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/synapse-config/message-stores</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/synapse-config/proxy-services</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/synapse-config/sequences</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/synapse-config/tasks</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/synapse-config/templates</directory>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/synapse-config</directory>
+            <includes>
+                <include>artifact.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/registry-resources</directory>
+            <includes>
+                <include>artifact.xml</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>
