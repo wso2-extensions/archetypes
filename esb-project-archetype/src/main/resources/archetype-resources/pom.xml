@@ -64,7 +64,7 @@
             <plugin>
                 <groupId>org.wso2.maven</groupId>
                 <artifactId>vscode-car-plugin</artifactId>
-                <version>5.2.3</version>
+                <version>5.2.6</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
