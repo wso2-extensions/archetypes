@@ -39,6 +39,7 @@
                 <module>esb-connector-archetype</module>
                 <module>esb-project-archetype</module>
                 <module>is-authenticator-archetype</module>
+                <module>is-local-authenticator-archetype</module>
                 <module>is-provisioning-connector-archetype</module>
                 <module>analytics-event-publisher-archetype</module>
                 <module>analytics-event-receiver-archetype</module>
