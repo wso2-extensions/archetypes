@@ -1,0 +1,24 @@
+Product: Template for WSO2 Identity Server Local Authenticator
+
+STEPS:
+
+ 1. Navigate to "<IS_CONNECTORS_HOME>/is-local-authenticator-archetype" and run the following command
+         mvn clean install
+
+ 2. Navigate to "<IS_CONNECTORS_HOME>" and run the following command to create the IS authenticator
+    mvn archetype:generate
+        -DarchetypeGroupId=org.wso2.carbon.extension.archetype
+        -DarchetypeArtifactId=org.wso2.carbon.extension.is.local-authenticator-archetype
+        -DarchetypeVersion=2.0.12-SNAPSHOT
+        -DgroupId=org.wso2.carbon.extension.identity.authenticator
+        -DartifactId=org.wso2.carbon.extension.identity.authenticator.<connector_name>
+        -Dversion=1.0.0
+        
+    Please enter the <connector_name> in lower camel case in above DartifactId command line
+    eg:- org.wso2.carbon.extension.identity.authenticator.pin
+
+ 3. Enter the authenticator name after executing steps 1 & 2. Please enter the authenticator name in upper camel case
+    eg:- connector_name : : PIN
+
+ 4. Confirm the connector name
+     Y : : Y
