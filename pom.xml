@@ -48,6 +48,7 @@
                 <module>siddhi-stream-function-archetype</module>
                 <module>siddhi-stream-processor-archetype</module>
                 <module>siddhi-window-archetype</module>
+                <module>carbon-user-operation-eventListener-archetype</module>
             </modules>
         </profile>
     </profiles>
