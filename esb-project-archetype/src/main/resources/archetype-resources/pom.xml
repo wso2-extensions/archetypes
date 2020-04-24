@@ -22,6 +22,7 @@
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
     <name>WSO2 EI - ESB Project</name>
+    <packaging>car</packaging>
 
     <pluginRepositories>
         <pluginRepository>
@@ -59,21 +60,19 @@
     </pluginRepositories>
 
     <build>
-        <directory>target/capp</directory>
         <plugins>
             <plugin>
                 <groupId>org.wso2.maven</groupId>
                 <artifactId>vscode-car-plugin</artifactId>
-                <version>5.2.6</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>car</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration />
+                <version>5.2.22</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <archiveLocation>${project.basedir}/target/capp</archiveLocation>
+                    <!-- enable this to rename the .car file name
+                    <archiveName>archive_name</archiveName-->
+                    <!-- enable this to rename the carbon application name
+                    <cAppName>capp_name</cAppName-->
+                </configuration>
             </plugin>
         </plugins>
     </build>
