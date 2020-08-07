@@ -3,17 +3,18 @@ Product: Template for WSO2 ESB CONNECTOR
 STEPS:
 
  1. Navigate to "<archetypes>/esb-connector-archetype" and run the following command
-         mvn clean install
+        mvn clean install
+ 2. Ppdate archetype catalog
+        mvn install archetype:update-local-catalog
+
+ 3. Call plugin archetype goal crawl
+        mvn archetype:crawl
 
  2. Navigate to "<CONNECTORE_HOME>" and run the following command to create the esb connector
-    mvn archetype:generate
-        -DarchetypeGroupId=org.wso2.carbon.extension.archetype
-        -DarchetypeArtifactId=org.wso2.carbon.extension.esb.connector-archetype
-        -DarchetypeVersion=2.0.2-SNAPSHOT
-        -DgroupId=org.wso2.carbon.connector
-        -DartifactId=org.wso2.carbon.connector.<connector_name>
-        -Dversion=1.0.0
-        
+        mvn archetype:generate -DarchetypeGroupId=org.wso2.carbon.extension.archetype -DarchetypeArtifactId=org.wso2.carbon.extension.esb.connector-archetype -DarchetypeVersion=2.0.14-SNAPSHOT -DgroupId=org.wso2.carbon.connector -DartifactId=org.wso2.carbon.connector.sample -Dversion=1.0.0 -DarchetypeCatalog=local
+
+    Change the parameter -DarchetypeVersion to the version of archetype you are developing
+
     Please enter the <connector_name> in lower camel case in above DartifactId and Dpackage command line
     eg :- org.wso2.carbon.connector.sample
 
