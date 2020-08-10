@@ -11,7 +11,7 @@ STEPS:
         mvn archetype:crawl
 
  2. Navigate to "<CONNECTORE_HOME>" and run the following command to create the esb connector
-        mvn archetype:generate -DarchetypeGroupId=org.wso2.carbon.extension.archetype -DarchetypeArtifactId=org.wso2.carbon.extension.esb.connector-archetype -DarchetypeVersion=2.0.14-SNAPSHOT -DgroupId=org.wso2.carbon.connector -DartifactId=org.wso2.carbon.connector.sample -Dversion=1.0.0 -DarchetypeCatalog=local
+        mvn archetype:generate -DarchetypeGroupId=org.wso2.carbon.extension.archetype -DarchetypeArtifactId=org.wso2.carbon.extension.esb.connector-archetype -DarchetypeVersion=2.0.14-SNAPSHOT -DgroupId=org.wso2.carbon.connector -DartifactId=org.wso2.carbon.connector.<connector_name> -Dversion=1.0.0 -DarchetypeCatalog=local
 
     Change the parameter -DarchetypeVersion to the version of archetype you are developing
 
