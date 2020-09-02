@@ -60,14 +60,21 @@
     </pluginRepositories>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.wso2.maven</groupId>
                 <artifactId>vscode-car-plugin</artifactId>
-                <version>5.2.22</version>
+                <version>5.2.29</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <archiveLocation>${project.basedir}/target/capp</archiveLocation>
+                    <!-- enable this to re define an archive location other than the default location
+                    <archiveLocation>${project.basedir}/target/capp</archiveLocation-->
                     <!-- enable this to rename the .car file name
                     <archiveName>archive_name</archiveName-->
                     <!-- enable this to rename the carbon application name
