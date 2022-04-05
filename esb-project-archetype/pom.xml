@@ -22,7 +22,7 @@
     <groupId>my.groupId</groupId>
     <version>2.0.16</version>
     <packaging>maven-archetype</packaging>
-    <name>WSO2 Carbon - Archetype for ESB Synapse Project</name>
+    <name>WSO2 multi-module project</name>
     <build>
         <extensions>
             <extension>
