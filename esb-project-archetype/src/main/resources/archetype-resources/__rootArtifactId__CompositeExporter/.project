@@ -2,10 +2,8 @@
 <projectDescription>
 	<name>${artifactId}</name>
 	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-	</buildSpec>
+	<projects></projects>
+	<buildSpec></buildSpec>
 	<natures>
 		<nature>org.wso2.developerstudio.eclipse.distribution.project.nature</nature>
 	</natures>

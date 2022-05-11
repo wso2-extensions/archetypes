@@ -6,12 +6,12 @@ STEPS:
          mvn clean install
 
  2. Run the following command to create the esb synapse project
-    mvn archetype:generate
-        -DarchetypeGroupId=my.groupId
-        -DarchetypeArtifactId=my-archetype-id
-        -DarchetypeVersion=2.0.16
-        -DgroupId=<group_id>
-        -DartifactId=<project_name>
+    mvn archetype:generate \
+        -DarchetypeGroupId=my.groupId \
+        -DarchetypeArtifactId=my-archetype-id \
+        -DarchetypeVersion=1.0.0 \
+        -DgroupId=<group_id> \
+        -DartifactId=<project_name> \
         -Dversion=1.0.0
 
 

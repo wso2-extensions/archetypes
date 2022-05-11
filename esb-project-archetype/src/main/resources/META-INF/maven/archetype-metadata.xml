@@ -1,132 +1,118 @@
-<archetype-descriptor
-    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
-    name="${artifactId}">
-    <fileSets>
-			<fileSet filtered="true" packaged="false">
-            			<directory></directory>
-            			<includes>
-                			<include>.project</include>
-            			</includes>
-        		</fileSet>
-        		<fileSet filtered="true" packaged="false">
-            			<directory>.vscode</directory>
-            			<includes>
-                			<include>settings.json</include>
-            			</includes>
-        		</fileSet>
-    </fileSets>
-    <modules>
-    	     <module id="${rootArtifactId}CompositeExporter" dir="__rootArtifactId__CompositeExporter" name="${rootArtifactId}CompositeExporter">
-		    <fileSets>
-		    	<fileSet filtered="true" packaged="false">
-			    <directory>target/classes</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>target/test-classes</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-            			<directory>/</directory>
-            			<includes>
-                			<include>.project</include>
-            			</includes>
-        		</fileSet>
-		    </fileSets>
-	     </module>
-	    <module id="${rootArtifactId}Configs" dir="__rootArtifactId__Configs" name="${rootArtifactId}Configs">
-		    <fileSets>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/synapse-config/api</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/synapse-config/endpoints</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/synapse-config/inbound-endpoints</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/synapse-config/local-entries</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/synapse-config/message-processors</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/synapse-config/message-stores</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/synapse-config/proxy-services</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/synapse-config/sequences</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/synapse-config/tasks</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/synapse-config/templates</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>src/main/resources/metadata</directory>
-			</fileSet>
-			<fileSet filtered="true" packaged="false">
-			    <directory>test/resources/mock-services</directory>
-			</fileSet>
-			 <fileSet>
-            			<directory>/</directory>
-            			<includes>
-                			<include>artifact.xml</include>
-            			</includes>
-        		</fileSet>
-        		<fileSet filtered="true" packaged="false">
-            			<directory>/</directory>
-            			<includes>
-                			<include>.project</include>
-            			</includes>
-        		</fileSet>
-		    </fileSets>
-	     </module>
-	     <module id="${rootArtifactId}ConnectorExporter" dir="__rootArtifactId__ConnectorExporter" name="${rootArtifactId}ConnectorExporter">
-		    <fileSets>
-		    	<fileSet>
-            			<directory>/</directory>
-            			<includes>
-                			<include>artifact.xml</include>
-            			</includes>
-        		</fileSet>
-        		<fileSet filtered="true" packaged="false">
-            			<directory>/</directory>
-            			<includes>
-                			<include>.project</include>
-            			</includes>
-        		</fileSet>
-		    </fileSets>
-	     </module>	     
-	     <module id="${rootArtifactId}RegistryResources" dir="__rootArtifactId__RegistryResources" name="${rootArtifactId}RegistryResources">
-		    <fileSets>
-		    	<fileSet filtered="true" packaged="false">
-			    <directory>target</directory>
-			</fileSet>
-		    	<fileSet>
-            			<directory>/</directory>
-            			<includes>
-                			<include>artifact.xml</include>
-            			</includes>
-        		</fileSet>
-        		<fileSet filtered="true" packaged="false">
-            			<directory>/</directory>
-            			<includes>
-                			<include>.project</include>
-            			</includes>
-        		</fileSet>
-        		<fileSet filtered="true" packaged="false">
-            			<directory>/</directory>
-            			<includes>
-                			<include>.classpath</include>
-            			</includes>
-        		</fileSet>
-		    </fileSets>
-	     </module>
-  </modules>
-    
+<archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" name="${artifactId}">
+	<fileSets>
+		<fileSet filtered="true" packaged="false">
+			<directory></directory>
+			<includes>
+				<include>.project</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true" packaged="false">
+			<directory>.vscode</directory>
+			<includes>
+				<include>settings.json</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+	<modules>
+		<module id="${rootArtifactId}CompositeExporter" dir="__rootArtifactId__CompositeExporter" name="${rootArtifactId}CompositeExporter">
+			<fileSets>
+				<fileSet filtered="true" packaged="false">
+					<directory>/</directory>
+					<includes>
+						<include>.project</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="${rootArtifactId}Configs" dir="__rootArtifactId__Configs" name="${rootArtifactId}Configs">
+			<fileSets>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/synapse-config/api</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/synapse-config/endpoints</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/synapse-config/inbound-endpoints</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/synapse-config/local-entries</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/synapse-config/message-processors</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/synapse-config/message-stores</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/synapse-config/proxy-services</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/synapse-config/sequences</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/synapse-config/tasks</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/synapse-config/templates</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>src/main/resources/metadata</directory>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>test/resources/mock-services</directory>
+				</fileSet>
+				<fileSet>
+					<directory>/</directory>
+					<includes>
+						<include>artifact.xml</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>/</directory>
+					<includes>
+						<include>.project</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="${rootArtifactId}ConnectorExporter" dir="__rootArtifactId__ConnectorExporter" name="${rootArtifactId}ConnectorExporter">
+			<fileSets>
+				<fileSet>
+					<directory>/</directory>
+					<includes>
+						<include>artifact.xml</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>/</directory>
+					<includes>
+						<include>.project</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="${rootArtifactId}RegistryResources" dir="__rootArtifactId__RegistryResources" name="${rootArtifactId}RegistryResources">
+			<fileSets>
+				<fileSet>
+					<directory>/</directory>
+					<includes>
+						<include>artifact.xml</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>/</directory>
+					<includes>
+						<include>.project</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="false">
+					<directory>/</directory>
+					<includes>
+						<include>.classpath</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+	</modules>
 </archetype-descriptor>
