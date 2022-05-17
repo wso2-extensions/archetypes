@@ -6,12 +6,6 @@
 				<include>.project</include>
 			</includes>
 		</fileSet>
-		<fileSet filtered="true" packaged="false">
-			<directory>.vscode</directory>
-			<includes>
-				<include>settings.json</include>
-			</includes>
-		</fileSet>
 	</fileSets>
 	<modules>
 		<module id="${rootArtifactId}CompositeExporter" dir="__rootArtifactId__CompositeExporter" name="${rootArtifactId}CompositeExporter">
