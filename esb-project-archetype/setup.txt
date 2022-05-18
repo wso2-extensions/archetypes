@@ -14,4 +14,3 @@ STEPS:
         -DartifactId=<project_name> \
         -Dversion=1.0.0
 
-
