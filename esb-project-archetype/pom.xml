@@ -21,9 +21,13 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>my-archetype-id</artifactId>
-    <groupId>my.groupId</groupId>
-    <version>1.0.0</version>
+    <parent>
+        <artifactId>carbon-extension-archetype</artifactId>
+        <groupId>org.wso2.carbon.extension.archetype</groupId>
+        <version>2.0.17-SNAPSHOT</version>
+    </parent>
+    <artifactId>org.wso2.carbon.extension.ei.project.archetype</artifactId>
+    <version>2.0.17-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
     <name>WSO2 multi-module project</name>
     <build>
