@@ -15,12 +15,14 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<template xmlns="http://ws.apache.org/ns/synapse" name="sample_template">
-        <parameter name="generated_param"/>
-        <sequence>
-            	<log level="full">
+<template xmlns="http://ws.apache.org/ns/synapse" name="sample_operation">
+	<parameter name="generated_param"/>
+	<parameter name="responseVariable" description="The name of the variable to which the output should be stored."/>
+	<parameter name="overwriteBody" description="Replace the Message Body in Message Context with the response of the operation."/>
+	<sequence>
+		<log level="full">
 			<property name="*******template_param********" expression="$func:generated_param" />
 		</log>
-		<class name="org.wso2.carbon.connector.${connector_name}Connector" />
-        </sequence>
+		<class name="${package}.${connector_name}Connector" />
+	</sequence>
 </template>

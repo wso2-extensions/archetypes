@@ -15,24 +15,29 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-package org.wso2.carbon.connector;
+package ${package};
 
 import org.apache.synapse.MessageContext;
-import org.wso2.carbon.connector.core.AbstractConnector;
-import org.wso2.carbon.connector.core.ConnectException;
+import org.wso2.integration.connector.core.AbstractConnectorOperation;
+import org.wso2.integration.connector.core.ConnectException;
+import org.wso2.integration.connector.core.util.ConnectorUtils;
 
 /**
  * Sample method implementation.
  */
-public class ${connector_name}Connector extends AbstractConnector {
+public class ${connector_name}Connector extends AbstractConnectorOperation {
 
     @Override
-    public void connect(MessageContext messageContext) throws ConnectException {
-        Object templateParam = getParameter(messageContext, "generated_param");
+    public void execute(MessageContext messageContext, String responseVariable, Boolean overwriteBody)
+            throws ConnectException {
+        String templateParam = (String) ConnectorUtils.
+                lookupTemplateParamater(messageContext, "generated_param");
         try {
             log.info("${connector_name} sample connector received message :" + templateParam);
             /**Add your connector code here 
             **/
+            String resultJSON = "{\"status\":\"done\"}";
+            handleConnectorResponse(messageContext, responseVariable, overwriteBody, resultJSON, null, null);
         } catch (Exception e) {
 	    throw new ConnectException(e);	
         }

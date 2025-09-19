@@ -18,8 +18,9 @@
 -->
 <component name="sample" type="synapse/template" >
     <subComponents> 
-		<component name="sample_template" >
-	    		<file>sample_template.xml</file>
+		<component name="sample_operation" >
+	    		<file>sample_operation.xml</file>
+				<displayName>Sample Operation</displayName>
 	    		<description>sample wso2 connector method</description>
 		</component>			
     </subComponents>    

@@ -17,7 +17,7 @@
    under the License.
 -->
 <connector>
-    <component name="${connector_name}" package="org.wso2.carbon.connector" >
+    <component name="${connector_name}" package="${package}" >
         <dependency component="config" />
         <dependency component="sample" />
         <description>WSO2 ${connector_name} connector library</description>

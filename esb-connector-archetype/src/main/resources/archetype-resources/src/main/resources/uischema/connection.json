@@ -1,0 +1,58 @@
+{
+  "connectorName": "${connector_name}",
+  "connectionName": "${connector_name}_Connection",
+  "title": "${connector_name} Connection",
+  "help": "Configuration properties for ${connector_name} connection",
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "${connector_name}_CONNECTION_1",
+        "required": "true",
+        "helpTip": "The name for the ${connector_name} connection.",
+        "validation": "nameWithoutSpecialCharacters"
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "username",
+                    "displayName": "Username",
+                    "inputType": "string",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The username for authenticating with the ${connector_name} API."
+                  }
+                },
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "password",
+                    "displayName": "Password",
+                    "inputType": "string",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "The password for authenticating with the ${connector_name} API."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

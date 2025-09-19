@@ -38,42 +38,13 @@
             <includes>
                 <include>**/*.xml</include>
                 <include>**/*.txt</include>
+                <include>**/*.json</include>
             </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory>src/test/java</directory>
             <includes>
                 <include>**/*.java</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>src/test</directory>
-            <includes>
-                <include>INTEGRATION_TEST.txt</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>src/test/resources</directory>
-            <includes>
-                <include>testng.xml</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>src/test/resources/artifacts/ESB/connector/config</directory>
-            <includes>
-                <include>**/*.properties</include>
-            </includes>
-        </fileSet>
-        <fileSet>
-            <directory>src/test/resources</directory>
-            <includes>
-                <include>**/*.*</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>repository</directory>
-            <includes>
-                <include>**/*.txt</include>
             </includes>
         </fileSet>
     </fileSets>
