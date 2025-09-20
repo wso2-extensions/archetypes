@@ -19,7 +19,7 @@
 <connector>
     <component name="${connector_name}" package="${package}" >
         <dependency component="config" />
-        <dependency component="sample" />
+        <dependency component="functions" />
         <description>WSO2 ${connector_name} connector library</description>
     </component>
     <icon>icon/icon-small.gif</icon>

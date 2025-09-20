@@ -7,7 +7,6 @@
     "payload": {
       "type": "object",
       "description": "The main response payload from the compress operation."
-      }
     }
   },
   "required": [

@@ -16,7 +16,7 @@
    specific language governing permissions and limitations
    under the License.
 -->
-<component name="sample" type="synapse/template" >
+<component name="functions" type="synapse/template" >
     <subComponents> 
 		<component name="sample_operation" >
 	    		<file>sample_operation.xml</file>
